@@ -1,0 +1,87 @@
+﻿Author of the code review: Yu Wang
+Date of the code review: 4/21
+Sprint number 6
+Name of the .cs files being reviewed: Bowser.cs
+Time taken: 30 min
+Author of the .cs file being reviewed: Wubin Tang
+Specific comments on code quality
+
+namespace Game1.Enemies
+{
+    class Bowser : IBoss
+    {
+        public IEnemyActionState State { get; set; }
+        public BossPhysicalProperty BossPhysics { get; set; }
+        public Vector2 Location { get; set; }
+        public bool IsControlled { get; set; }
+        public int Life { get; set; }
+        public Rectangle Rectangle => new Rectangle((int)Location.X, (int)Location.Y, State.Width, State.Height);
+        private int deathTimer;
+        private bool canBeDamaged;
+        private int damageTimer;
+        private int jumpTimer;
+        private int randomTimer;
+        private int randomNum;
+        public bool IsActivate { get; set; }
+        private int shootTimer;
+        private int turnTimer;
+        private int randomHeight;
+        public IList<FireShot> fireShots { get; set; }
+        private int heightFactor;
+
+        public Bowser(Vector2 location)
+        {
+            BossPhysics = new BossPhysicalProperty(this);
+            State = new BowserMoveState(BossPhysics.IsFacingLeft);
+            Location = location;
+            deathTimer = Util.Instance.Bowser_deathtimer;
+            IsControlled = false;
+            canBeDamaged = true;
+            IsActivate = false;
+            damageTimer = 0;
+            jumpTimer = 0;
+            randomTimer = 0;
+            turnTimer = 0;
+            randomNum = RandomNumber(20);
+            Life = Util.Instance.Bowser_life;
+            randomHeight = RandomNumber(40);
+            fireShots = new List<FireShot>();
+            shootTimer = 20;
+            heightFactor = 0;
+
+        }
+        public void Jump()
+        {
+            if (IsActivate) {
+                BossPhysics.Velocity = new Vector2(BossPhysics.Velocity.X, -350);
+            } 
+        }
+        public int RandomNumber(int i)
+        {
+            Random random = new Random();
+            return random.Next(i);
+        }
+
+        public void BeDead()
+        {
+            BossPhysics.IsAlive = false;
+        }
+
+        public void Shoot()
+        {
+            if (!BossPhysics.IsFacingLeft)
+            {
+                heightFactor = 80;
+            }
+            else
+            {
+                heightFactor = 0;
+
+            }
+            FireShot fireShot = new FireShot(new Vector2(Location.X + heightFactor, Location.Y + randomHeight), BossPhysics.IsFacingLeft);
+            fireShots.Add(fireShot);
+        }
+
+Generally, the readibility of this file is pretty good. However, soem vairables of the file should have a better name like Move() or facingLeft. 
+Also, there are still some magic numbers which can be concluded into the Util file. And the List Fireshots and FireHells can be put
+into the class of World.cs, which would improve the readability of the file since there are also lists for fireball and other obejcts.

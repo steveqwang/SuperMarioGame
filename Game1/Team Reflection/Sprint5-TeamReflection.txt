@@ -1,0 +1,12 @@
+﻿This is the Team reflection of sprint 5
+We added new functions include and not only: Hud display to show our scores, world ID, and time countdown
+we have added special classes to achieve sound effacts. However, most of our time was spent on fixing previous bugs on physics and movement logics.
+we also spend about 1 day to modify our code, such as move certain parts of codes to reduce the redundence of some functions in collisions. Overall, we 
+want to achieve higher cohesion and lower coupling. Beside that, it also took us a long time to add coin system and bonus system. We should have worked on
+that ealier, so that we don't have fix all the code debts related to not using gold and score systems. In general, we achieved a high readability compare to 
+what we did in sprint 4.
+Speaking of the usage of managment tools, everyone on our team have already become fluent users of Azure DevOps. Without spending extra times on it, each one of 
+us strictly followed the guideline and picked our works on the broad. We made sure the working porgress was up to date, and directly showed on broad, as a result 
+and reward, we got a clear picture on how many works we have left, how many functions we have already achieved. In this way, we can help each other better. 
+Through this semester, I believe everyone on our team has learnt a lot on how to organize and using team managment tools such as Azure DevOps, and we can use it 
+toward future careers.

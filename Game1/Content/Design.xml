@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+ 
+<Objects>
+  <Player Type="Mario" X="160" Y="120" />
+  <Block Type="BeveledBlock" X="40" Y="40" />
+  <Block Type="BrickBlock" X="80" Y="40" />
+  <Block Type="GroundBlock" X="120" Y="40" />
+  <Block Type="HiddenBlock" X="160" Y="40" />
+  <Block Type="Pipe" X="200" Y="40" />
+  <Block Type="QuestionBlock" X="240" Y="40" />
+  <Block Type="UsedBlock" X="280" Y="40" />
+  <Enemy Type="Goomba" X="40" Y="80" />
+  <Enemy Type="Koopa" X="80" Y="80" />
+  <Item Type="Coin" X="120" Y="80" />
+  <Item Type="FireFlower" X="160" Y="80" />
+  <Item Type="GreenMushroom" X="200" Y="80" />
+  <Item Type="RedMushroom" X="240" Y="80" />
+  <Item Type="Star" X="280" Y="80" />
+  <Scenery Type="BigBush" X="40" Y="200" />
+  <Scenery Type="SmallBush" X="40" Y="160" />
+  <Scenery Type="BigCloud" X="120" Y="200" />
+  <Scenery Type="SmallCloud" X="120" Y="160" />
+  <Scenery Type="BigHill" X="200" Y="200" />
+  <Scenery Type="SmallHill" X="200" Y="160" />
+</Objects>
+</XnaContent>

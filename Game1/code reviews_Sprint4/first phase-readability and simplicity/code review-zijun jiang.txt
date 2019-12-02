@@ -1,0 +1,61 @@
+Author of the code review: Zijun Jiang
+Date of the code review: 3/8
+Sprint number 4
+Name of the .cs file being reviewed: MarioPhysicalProperty.cs
+Author of the .cs file being reviewed Jiaqi Wang
+Specific comments on code quality
+
+ode:
+  public void run()
+        {
+            if (isInitialRun)
+            {
+                Velocity = new Vector2(mario.isFacingLeft ? -50 : 50, Velocity.Y);
+                isInitialRun = false;
+            }
+            Accerlation = new Vector2(mario.isFacingLeft ? -100 : 100, 640);
+        }
+        public void ResetRun()
+        {
+            isInitialRun = true;
+        }
+        public void UpdateRunningAcceleration()
+        {
+            if(mario.CurrentAnimationState is MarioDeadState)
+            {
+                Velocity = new Vector2(0, Velocity.Y);
+                Accerlation = new Vector2(0, Accerlation.Y);
+                ResetRun();
+            }
+            if(mario.CurrentAnimationState is MarioLeftIdleState &&mario.PreviousAnimationState is MarioLeftRunState
+                || mario.CurrentAnimationState is MarioLeftIdleState && mario.PreviousAnimationState is MarioLeftIdleState)
+            {
+                
+                Accerlation = new Vector2(100, Accerlation.Y);
+                if (Velocity.X >= 0)
+                {
+                    Velocity = new Vector2(0, Velocity.Y);
+                    Accerlation = new Vector2(0, Accerlation.Y);
+                    ResetRun();
+                }
+            }
+            if (mario.CurrentAnimationState is MarioRightIdleState && mario.PreviousAnimationState is MarioRightRunState
+                || mario.CurrentAnimationState is MarioRightIdleState && mario.PreviousAnimationState is MarioRightIdleState)
+            {
+                Accerlation = new Vector2(-100, Accerlation.Y);
+                if (Velocity.X <= 0)
+                {
+                    Velocity = new Vector2(0, Velocity.Y);
+                    Accerlation = new Vector2(0, Accerlation.Y);
+                    ResetRun();
+                }
+            }
+        }
+
+Review:
+Generally speking, these method is in good quality. It has run and reset run method for mario physics. I can easily 
+understand some variables names like Velocity and Accerlation. I can see the author of these codes has some good coding
+habbits like using :? other than if statement. Some naming boolean varables are in good naming, like isInitialRun. 
+Some suggestion from my side is that some constant values like 100f and -100f to be saved as constants value like 
+const initialVelocityLeft = 100f or it can be even better to be added into a utility or library namespace so we can put 
+all constants togerther later. 

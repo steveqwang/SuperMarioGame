@@ -1,0 +1,14 @@
+
+After two weeks, we finally finished with the implementation and refactoring with our project. In terms of group time spending and group management, 
+we consider ourselves do have a couple of strong points, while we also have some weak points that needs to be improved. Firstly, our strong point: we 
+managed the overall time spending in a great balance, we all think about working hard on this project, with the tacit understanding of every single group 
+member, we were able to arrange our time in a good pace. Every single phase was finished on time, no delay. Another strong point of us is that we did 
+a good division on the project when we initially assigned the work load. We evenly divided the workload, until we finished the project, most of us 
+were satisfied with our work load amount. 
+Now let’s talk about our weak point. Our major weak point is, even though we followed all the directions and stick with devOps work load planning, we 
+were not able to put every single individual task on the broad. As a result, we can’t just directly tell which part were fully implemented by another 
+member from neither the broad or the chart. Most of time we have to get into code segments to check whether a method is workable or not. But our burndown 
+chart still could partially reflect our work progress, since each member updated our work load every single day (to be more specific, we were precise on 
+work load count, but we didn’t be very precise on which person did which job, the broad and burndown chart could only reflect the whole work progress). The 
+burndown chart indicates that we were most active as a team during 2/3 since that was the due day of our initial implementation. During last few days we add an 
+extra 30 hours for refactoring, thus the remaining work amount raised again.

@@ -1,0 +1,112 @@
+﻿Review author: Wubin Tang
+Date: 3/25/2019
+Sprint 4
+
+File: Fireball.cs FireballPhysicalProperty.cs camera.cs game1.cs
+Author of the .cs file: Yu Wang
+Time taken: 30 min
+Comments on code quality:
+
+public class Fireball : IGameObject
+    {
+        private ISprite sprite;
+        
+        public Vector2 Location { get; set; }
+        public Vector2 Speed { get; set; }
+        public bool IsLeft { get; set; }
+        public Rectangle Rectangle => new Rectangle((int) Location.X, (int)Location.Y, sprite.Width, sprite.Height);
+        public bool IsRemove { get; set; }
+        public FireballPhysicalProperty FireballPhysicalProperty { get; private set; }
+        private bool explode;
+        private float explodeTime;
+        private float fireballLife;
+
+        public Fireball(Vector2 location, bool isLeft)
+        {
+            IsLeft = isLeft;
+            FireballPhysicalProperty = new FireballPhysicalProperty(this, false);
+            if (IsLeft)
+            {
+                sprite = GameSpriteFactory.Instance.CreateLeftFireBallSprite();
+            }
+            else
+            {
+                sprite = GameSpriteFactory.Instance.CreateRightFireBallSprite();
+            }
+            Location = location;
+            explodeTime = 0.15f;
+            fireballLife = 2f;
+            IsRemove = false;
+        }
+        public void CollisionHorizontal(float horizonValue)
+        {
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (!IsRemove)
+            {
+                sprite.Draw(spriteBatch, Location);
+            }
+            else
+            {
+                Location += new Vector2(0, 1000);
+            }
+
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if (!explode)
+            {
+                fireballLife = fireballLife - (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (fireballLife <= 0)
+                {
+                    IsRemove = true;
+                }
+                else
+                {
+                    if (IsLeft)
+                    {
+                        FireballPhysicalProperty.MoveLeft();
+                    }
+                    else
+                    {
+                        FireballPhysicalProperty.MoveRight();
+                    }
+                }
+              
+            }
+            else
+            {           
+                explodeTime = explodeTime - (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if(explodeTime <= 0)
+                {
+                    IsRemove = true;
+                }
+            }
+            FireballPhysicalProperty.Update(gameTime);
+            sprite.Update(gameTime);
+            
+        }
+        public void Jump()
+        {
+            FireballPhysicalProperty.Jump();
+        }
+        public void Explode()
+        {
+            // not implemented yet
+            explode = true;
+            FireballPhysicalProperty.Locked = true;
+            FireballPhysicalProperty.Velocity = Vector2.Zero;
+            sprite = GameSpriteFactory.Instance.CreateExplodedFireBallSprite();
+            
+        }
+    }
+
+Generally speaking, these two classes of fireball have good quality. There's not too much going on in these classes. But the draw method should be changed.
+Fireball should remove from the fireballlist in the world.cs instead of not drawing the sprite and change its location to make it disappear. And the update
+method may do too many things, can move some code in a new method. And for if(IsLeft) statement, maybe we can let factory to choose which sprite
+should be used. We should use the camera function in camera.cs instead of putting this function in main game cs file. And the reset world method 
+also should move to another place. Overall these classes are in good quality and the cohesion is fine.
+

@@ -1,0 +1,75 @@
+﻿Review author: Yu Wang
+Data: 2/20/2019
+Sprint 3
+Name of the .cs file being reviewed: All .cs file under Sprite file and Spritestates under State folder
+Author of the .cs file being reviwed: Wubin Tang
+Number of minutes taken to complete the review: 25
+
+General comments on what is readable and what is not:
+Generally speaking, the .cs files in sprite folder are easy to be understood. A person can understand the 
+means of each field deeply. The variables are mostly simple and meaningful. The simplicity of the code is good.
+
+
+namespace Game1.Sprites
+{
+    public class DynamicSprite : Interfaces.ISprite
+    {
+        private readonly Texture2D texture;
+        private int rows;
+        private int columns;
+        private int delay;
+        private int maxDelay;
+        private int currentFrame;
+        private int totalFrames;
+        public int Width { get; set; }
+        public int Height { get; set; }
+
+        public DynamicSprite(Texture2D texture, int rows, int columns, int maxDelay)
+        {
+            this.texture = texture;
+            this.rows = rows;
+            this.columns = columns;
+            Width = texture.Width / columns;
+            Height = texture.Height / rows;
+            currentFrame = 0;
+            totalFrames = rows * columns;
+            this.maxDelay = maxDelay;
+            delay = 0;
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        {
+            int row = (int)((float)currentFrame / (float)columns);
+            int column = currentFrame % columns;
+
+            Rectangle sourceRectangle = new Rectangle(Width * column, Height * row, Width, Height);
+            Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width, Height);
+
+     
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+
+        }
+
+        public void Update()
+        {
+            if (delay == maxDelay)
+            {
+                delay = 0;
+                currentFrame++;
+                if (currentFrame == totalFrames)
+                    currentFrame = 0;
+            }
+            else
+            {
+                delay++;
+            }
+        }
+    }
+}
+
+Specific Comments:
+I do not have an issue with the implementation with the design. I think maybe some variables and 
+fields can be named some other names so that it can be understood more easily. So I'd like to suggest Wubin
+to give the varioables more meaningful names which can describe what the variable does instead of an arbitrary 
+letter, so that in case some one else tries to read our code, they can immediately understood figure out what the 
+variable is for, even they are just temporary variables used for transfer values. 

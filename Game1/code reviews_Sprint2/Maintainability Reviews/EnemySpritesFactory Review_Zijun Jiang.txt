@@ -1,0 +1,21 @@
+Review author: Zijun Jiang
+Date: 2/11/2019
+Sprint 2
+
+File: EnemySpritesFactory.cs
+Author of the .cs file: Jiaqi Wang
+Comments on code quality:
+By this sprint, EnemySpritesFactory should work fine. The file works as a factory to create different states of enemy. The file uses createXXXSprite() method
+to call different states of enemys. Also, the file uses LoadAllTextures() method to load all the picture for different states of sprites.However, we should notice
+that we only have two enemies here, and each enemy only have one state. Suppose we will have more enemies and more states in the later sprints, this class would be 
+very long and very messy. I suggest in the later implementation, we can only call createXXXSprites for each enemy once, and inside of different enemy, we have a 
+dictionary or map to match different states and different states and different pictures, and overall, we can make LoadAllTextures itself as a factory to be shared 
+with all codes such that each factory can call it as database to acqurire the picture it need. 
+
+The current problem for this factory is just that potential risk of hard to maintain in the later sprints when it comes with more enemies and more states. I sincerely 
+suggest to build a structure to store the information of pictures and corresponding states.
+
+
+
+
+

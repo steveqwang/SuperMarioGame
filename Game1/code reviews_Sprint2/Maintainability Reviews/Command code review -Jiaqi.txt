@@ -1,0 +1,16 @@
+﻿Author of the code review: Jiaqi Wang
+Date of the code review: 2/11/2019
+Sprint Number:2
+Name of the cs file being reviewed: All command classes
+Author of the cs file being reviewed: Weizi Cai
+Comments on code quality:
+Currently, the commands classes work well. All command classes has receiver and it call corresponding method of receiver in Execute method.
+But I think codes in PressRToResetCommand.cs can be imporved. In Execute method, it re create some class to act as reset. Maybe it can be 
+seperated to different methods like ResetObject, ResetItem, ResetMario and ResetEnemy. In the future, the reset implementation might be 
+more complicated instead of just recreating the class. 
+
+ A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+In the future, the enemy and some items might need to move right and left, so it would require more commands to support such actions. But
+actually, Mario, Enemy and item moving left and right commands are very similiar because it just call receiver MoveLeft or MoveRight
+Method. In this case, I think we can let Mario class to extend IObject and Change MarioTurnLeftCommand to just MovingLeftCommand,
+so all objects need to move left or right can be called by the same command instead of setting a lot of commands having the same action. 

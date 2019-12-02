@@ -1,0 +1,16 @@
+﻿This is the Team reflection of sprint 6
+We added new functions include and not only: Boss world, Boss character, Enemy spawn portal, fireHell
+we have added special classes corresponding to these features, such as enemy portal class, bowser class for boss, etc.
+In the process, we were able to find a lot of bugs which were left from previous sprints. For example, we fixed the bug that mario was able to jump over
+the flag and directly go to the final castle.In terms of group time spending and group management, we did a great job due to our well managing the tasks and time. It allows
+more linear compared with the sprint2. Team members updated their works progress more frequently, which makes the work flow more smoothy and the overall progress 
+is more accurate and it really identifies all pieces of process on the project. 
+Speaking of the usage of managment tools, everyone on our team have already become fluent users of Azure DevOps. we are already fluent users to this
+system, each one of 
+us strictly followed the guideline and picked our works on the broad. We made sure the working porgress was up to date, and directly showed on broad.
+For example, Gemini achieved the cheat code functions, jiaqi was in charge of boss level, Yu and Wubin were working on enemy controlled players, Weizi made the 
+enemy portal functions. 
+as a result 
+and reward, we got a clear picture on how many works we have left, how many functions we have already achieved. In this way, we can help each other better. 
+Through this semester, I believe everyone on our team has learnt a lot on how to organize and using team managment tools such as Azure DevOps, and we can use it 
+towards future.

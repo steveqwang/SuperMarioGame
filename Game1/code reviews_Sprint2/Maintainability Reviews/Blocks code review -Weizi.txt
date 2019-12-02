@@ -1,0 +1,21 @@
+﻿Review author: Weizi Cai
+Date: 2/11/2019
+Sprint 2
+
+File: all cs files with name space of 'Game1.Blocks'
+Author of these .cs file:  Zijun Jiang & Jiaqi Wang
+Comments on code quality:
+By this sprint, all of the block classes should work fine. The block files works as a classes to inhirite from IObjects interface. 
+The file uses *****Block() method to construct different types of blocks. Also, the file uses Draw(SpriteBatch spriteBatch) method 
+that was inheritted from Iobject to draw with spriteBatch, at a given location 'spriteLocation'. 
+Currently this is a very good way of implement and organize block and its methods. However we should think about future.
+In the future we are going to create a whole mario game world, in that case, we will need a lot of different types of blocks.
+by that time, implementation of new type of block could be redundent because lots of block would need a common method, such
+as draw, contructor *****Block() and update. Beside these default methods, we might would need certain blocks to achieve
+new functions.
+Thus, one another way of approach is to use a abstract class and let it implement all the repeat methods, so when it comes
+to 100 types of different blocks, it would help us reduce the work amount, and the whole project file size. 
+
+
+
+

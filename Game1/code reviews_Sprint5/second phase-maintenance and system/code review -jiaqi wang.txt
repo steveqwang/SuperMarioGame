@@ -1,0 +1,12 @@
+﻿Author of the code review Jiaqi Wang
+Date of the code review 4/8/2019
+Sprint number 5
+Name of the .cs file being reviewed BlocksPhysicalProperty.cs
+Author of the .cs file being reviewed Zijun Jiang
+Specific comments on code quality
+The overall code quality is good and the code is easy to read.  The overall logic of this class is that sometimes the block needs to jump and sometime the blocks just
+stands. And he also use velocity and acceleration to make the movement of the block more realistic. In addition, in Update method, there is a bool variable named isLocked to determine whether the block need to jump 
+or not. 
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+The code is good, but it can still be improved. The initial velocity and acceleration of block is constant and sometimes the block need to jump in 
+different velocity. For example, the block in water needs to jump slower than blocks on the land. 

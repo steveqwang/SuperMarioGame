@@ -1,0 +1,11 @@
+Author of the code review Jiaqi Wang
+Date of the code review 4/21/2019
+Sprint number 6
+Name of the .cs file being reviewed AllCheatCodesManager.cs
+Author of the .cs file being reviewed Zijun Jiang
+Specific comments on code quality
+The overall code quality is good and the code is easy to read.  And the developer binds the cheat code string with relative commands. In this case, 
+this code is extensible because developers can add more string - command key value pairs when the game needs more cheat code. 
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+The code is good, but it can still be improved. In Execute methods like ExecuteSmall method, it just creates new MarioSmallState. This part of code wouldn't work if 
+developers add more players in the game. 

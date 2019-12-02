@@ -1,0 +1,148 @@
+﻿Review author: Yu Wang
+Date: 3/25/2019
+Sprint 4
+
+Files: MarioPlayer.cs
+Author of the files: Wubin Tang
+Time taken: 20 min
+Comments on code quality:
+
+namespace Game1.Player
+{
+    public class MarioPlayer : IPlayer
+    {
+        public IMarioPowerState CurrentPowerState { get; set; }
+        public IMarioActionState CurrentAnimationState { get; set; }
+        public IMarioActionState PreviousAnimationState { get; set; }
+        public IMarioAbilityState CurrentAbilityState { get; set; }
+        public MarioPhysicalProperty MarioPhysics{ get; set; }
+        public IList<FireballPhysicalProperty> fireballPhysicalProperties { get; set; }
+        public Rectangle Rectangle { get; set; }
+        public bool IsIdle { get; set; }
+        public Vector2 Location { get ; set ; }
+        public bool isFacingLeft { get; set; }
+        public bool canKick { get; set; }
+        public bool isFire { get; set; }
+        public bool canTakeDamage { get; set; }
+        private int damageTimer;
+        private int starTimer;
+        private int deathTimer;
+        public bool resetWorld { get; set; }
+        public IList<Fireball> fireballs { get; set; }
+
+        public MarioPlayer()
+        {
+            PreviousAnimationState = null;
+            CurrentPowerState = new MarioSmallState(this);
+            CurrentAnimationState = new MarioRightIdleState(this);
+            MarioPhysics = new MarioPhysicalProperty(this);
+            Rectangle = new Rectangle((int)Location.X, (int)Location.Y, CurrentAnimationState.Width, CurrentAnimationState.Height);
+            IsIdle = true;
+            canKick = true;
+            starTimer = 0;
+            damageTimer = 0;
+            deathTimer = 0;
+            fireballs = new List<Fireball>();
+            fireballPhysicalProperties = new List<FireballPhysicalProperty>();
+            canTakeDamage = true;
+            resetWorld = false;
+        }
+
+        public void TakeDamage()
+        {
+            if (canTakeDamage)
+            {
+                if (CurrentPowerState is MarioSmallState)
+                {
+                    CurrentAnimationState = new MarioDeadState();
+                }
+                else
+                {
+                    CurrentPowerState = new MarioSmallState(this);
+                }
+                canTakeDamage = false;
+            }
+            
+        }
+
+        public void checkDeath() {
+            if (Location.Y > 350) {
+                CurrentAnimationState = new MarioDeadState();
+            }
+        }
+
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            CurrentAnimationState.Draw(spriteBatch, Location);
+            foreach (Fireball fireball in fireballs){
+                fireball.Draw(spriteBatch);
+            }
+        }
+
+        public void Update(GameTime gametime)
+        {
+            if (damageTimer == 8)
+            {
+                canTakeDamage = true;
+                damageTimer = 0;
+            }
+            if (!canTakeDamage)
+            {
+                damageTimer++;
+            }
+            
+            if (CurrentPowerState is MarioStarBigState || CurrentPowerState is MarioStarSmallState)
+            {
+                if (starTimer == 500)
+                {
+                    if (CurrentPowerState is MarioStarBigState)
+                    {
+                        CurrentPowerState = new MarioBigState(this);
+                    }
+                    else
+                    {
+                        CurrentPowerState = new MarioSmallState(this);
+                    }
+                    starTimer = 0;
+                }
+                starTimer++;
+            }
+           
+           foreach(Fireball fireball in fireballs)
+            {
+                fireball.Update(gametime);
+            }
+           
+            Rectangle = new Rectangle((int)Location.X, (int)Location.Y, CurrentAnimationState.Width, CurrentAnimationState.Height);
+            if (IsIdle)
+            {
+                PreviousAnimationState = CurrentAnimationState;
+                CurrentAnimationState.Idle();
+                MarioPhysics.Idle();
+            }
+            IsIdle = true;
+
+            CurrentAnimationState.Update(gametime);
+            MarioPhysics.Update(gametime);
+            checkDeath();
+
+            if (CurrentAnimationState is MarioDeadState)
+            {
+                deathTimer++;
+            }
+            if (deathTimer == 200)
+            {
+                deathTimer = 0;
+                resetWorld = true;
+            }
+        }
+    }
+}
+
+The player classs is implemented pretty well with readable properties and methods. And we also add the Fireball List in this class.
+If we hold reference of fireball items, we can directly add or remove these fireballs in our world. And states of mario are also 
+managed in this class. CurrentPowerState, CurrentAnimationState, PreviousAnimationState, and CCurrentAbilityState are good appraoch to
+implement the player's transitional states. These codes also help all the team members to set or get the different states of Mario. 
+And in order to improve the readablity and the maintenance of the code, maybe we can move the fireball list into world class in the way of 
+managing other items, so that we can manage the world more flexibly.

@@ -1,0 +1,14 @@
+﻿This is the Team reflection of sprint 4
+We finally finished with the final implementation! On this sprint, we added new functions include and not only: Physics and jumping logic 
+for our player, Mario; Movement for types other than the player/mario object, such as our enemies, goomba and koopa, beside that, we also
+added movements to items such as mushrooms and star item; Collision detection and response for all moving objects, and last but not least, 
+Fireballs (or other player attacking abilities) and Scrolling camera. Speaking of using Azure, suprisingly we dropped the rate of using Azure
+team management, this is not good, we need to make changes in next sprint. I think the reason for this, is because every team members have 
+already familialized with their work portion, so, as a result, basically everyone know about what change should we make on our own parts. However,
+this is not good for long time team managements. 
+
+But, during our discussing when we had meetings and doing our code reviews, we figured that there are still lots of Technical debt left in both our 
+codes and our team management, one problem of us is we somehow lack of a test suite, which encourages quick and risky band-aids to fix bugs.
+We also got some anti patterns during our colabrations, for example, we some times work like Design by committee, which is The result of having many contributors 
+to a design, but no unifying vision. These are the changes we need to make before next sprint due. In general, we got a great communication environment 
+in our team.

@@ -1,0 +1,201 @@
+﻿Author of the code review: Wubin Tang
+Date of the code review: 4/3
+Sprint number 5
+Name of the.cs file being reviewed: SoundFactory.cs Koopa.cs
+Author of the.cs file being reviewed Yu Wang
+Specific comments on code quality:
+
+ class Koopa : IEnemy
+    {
+        public IEnemyActionState State { get; set; }
+        public EnemyPhysicalProperty EnemyPhysics { get; set; }
+        public Vector2 Location { get; set; }
+        public Rectangle Rectangle => new Rectangle((int)Location.X, (int)Location.Y, State.Width, State.Height);
+
+        private int deathTimer;
+        private int kickTimer;
+        private int reviveTimer;
+        private bool shouldDraw;
+        private bool isStomped;
+        private bool isKicked;
+
+        public Koopa(Vector2 location)
+        {
+            State = new KoopaMoveState();
+            EnemyPhysics = new EnemyPhysicalProperty(this);
+            Location = location;
+            deathTimer = Util.Instance.Koopa_deathtimer;
+            kickTimer = Util.Instance.Koopa_kicktimer;
+            reviveTimer = Util.Instance.Koopa_revivetimer;
+            shouldDraw = true;
+            isStomped = false;
+            isKicked = false;
+        }
+
+        public void BeFlipped()
+        {
+            if (!(State is KoopaFlippedState))
+            {
+                State = new KoopaFlippedState(this);
+                EnemyPhysics.isAlive = false;
+            }
+   
+        }
+
+        public void BeStomped()
+        {
+            State = new KoopaStompedState();
+            EnemyPhysics.isAlive = false;
+            reviveTimer = Util.Instance.Koopa_deathtimer_BeStomped;
+            if (!isStomped)
+            {
+                SoundFactory.Instance.PlayStompEnemySound();
+                isStomped = true;
+            }
+        }
+
+        public void BeKicked()
+        {
+            EnemyPhysics.isAlive = true;
+            State = new KoopaStompedKickedState(this);
+            if (!isKicked)
+            {
+                SoundFactory.Instance.PlayKickEnemySound();
+                isKicked = true;
+            }
+        }
+
+        public void Revive()
+        {
+            State = new KoopaMoveState();
+            EnemyPhysics = new EnemyPhysicalProperty(this);
+            deathTimer = Util.Instance.Koopa_deathtimer_revive;
+            kickTimer = Util.Instance.Koopa_kicktimer_revive;
+            reviveTimer = Util.Instance.Koopa_revivetimer_revive;
+            isStomped = false;
+            isKicked = false;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (shouldDraw) {
+                State.Draw(spriteBatch, Location);
+            }
+            else
+            {
+                Location += new Vector2(Util.Instance.Koopa_draw_vecx, Util.Instance.Koopa_draw_vecy);
+            }
+
+        }
+
+        public void Update(GameTime gametime)
+        {
+            if (State is KoopaFlippedState)
+            {
+                deathTimer++;
+            }
+
+            if (State is KoopaStompedKickedState)
+            {
+                kickTimer++;
+            }
+
+            if (State is KoopaStompedState)
+            {
+                reviveTimer++;
+            }
+            else
+            {
+                reviveTimer = Util.Instance.Koopa_revivetimer_update;
+            }
+
+            if (reviveTimer == Util.Instance.Koopa_update_ref250) {
+                Revive();
+            }
+
+            if (deathTimer == Util.Instance.Koopa_update_ref100)
+            {
+                shouldDraw = false;
+                deathTimer = Util.Instance.Koopa_deathtimer_update_100case;
+            }
+            else
+            {
+                State.Update(gametime);
+                EnemyPhysics.Update(gametime);
+                EnemyPhysics.EnemyMove();
+            }
+        }
+
+        public void CollidedWithMario(IPlayer mario, Direction direction)
+        {
+            if (State is KoopaFlippedState)
+            {
+                return;
+            }
+            if (State is KoopaMoveState || State is KoopaStompedKickedState)
+            {
+                if (mario.CurrentPowerState is MarioStarBigState || mario.CurrentPowerState is MarioStarSmallState)
+                {
+                    BeFlipped();
+                    mario.Scores += 100;
+                }
+                else if (direction == Direction.Top)
+                {
+                    BeStomped();
+                    isKicked = false;
+                    mario.canKick = false;
+                    mario.Scores += 100;
+                    kickTimer = Util.Instance.Koopa_kicktimer_dirtop;
+                }
+                else
+                {
+                    if (State is KoopaStompedKickedState) {
+                        if (kickTimer >= Util.Instance.Koopa_kickref) {
+                            mario.TakeDamage();
+                        }
+                    }
+                    if(State is KoopaMoveState)
+                    {
+                        mario.TakeDamage();
+                       // mario.lifes--;
+                    }
+                }
+            }
+
+            if ((State is KoopaStompedState) && mario.canKick)
+            {
+                if (mario.CurrentPowerState is MarioStarBigState || mario.CurrentPowerState is MarioStarSmallState)
+                {
+                    BeFlipped();
+                    mario.Scores += 100;
+                }
+                else
+                {
+                    if (direction == Direction.Left)
+                    {
+                        EnemyPhysics.isFacingLeft = false;
+                    }
+                    else if (direction == Direction.Right)
+                    {
+                        EnemyPhysics.isFacingLeft = true;
+                    }
+                    BeKicked();
+                }
+            }
+        }
+
+        public void CollidedWithShell(IEnemy shell)
+        {
+            BeFlipped();
+        }
+
+        public void CollideWithFireball(Fireball fireball)
+        {
+            BeFlipped();
+        }
+    }
+
+Gnerally, the readibility of the code is good. However, some sounds will be triggered more than once. The author use many boolean to fix these problems.
+Some boolean vars' name are weired and hard to understand. For example, in Koopa.cs file, bool isStomped and isKicked are used for soundfactory. But their names
+cannot help people understand what they are doing and may let reader misunderstand with some method name in koopa.cs. Also, many methods in factory haven't been used.
+

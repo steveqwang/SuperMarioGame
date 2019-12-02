@@ -1,0 +1,15 @@
+﻿Author of the code review: Yu Wang
+Data of the code review: 2/11/2019
+Sprint Number: 2
+Name of the cs file being reviewed: MarioPlayer.cs
+Author of the cs file being reviewd: Everyone
+Comments on code quality:
+
+The code quality of this class is good. As of right now, this class meets the basic requirement of Sprint2. For now, 
+there are many hard coded values existing in the MarioPlayer class and it works well currently. But in the future, there 
+will be more requirement and demands. It not only need to show the sprites inside the window but also need to make the 
+sprite and something else more data driven. There is no doubt that this class need to be rewritten to accommodate the 
+following requirements in the near future. This class may have more actions to be added, like firing, in the next few 
+Sprints, and it will also need to change some details in order to meet the upcoming requirements. However, from the 
+maintainability perspective, this class, there is not too much things flexible and MarioPlayer should be easy for the 
+group one to maintain as well as update for the other specifications in the future.

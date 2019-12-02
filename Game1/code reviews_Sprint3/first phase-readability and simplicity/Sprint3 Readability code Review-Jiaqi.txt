@@ -1,0 +1,12 @@
+Author of the code review: Jiaqi Wang
+Date of the code review:2/20/2019
+Sprint number:3
+Name of the .cs file being reviewed MarioItemHandler.cs Flower.cs Gold.cs and other item cs files?Author of the .cs file being reviewed Zijun Jiang
+Number of minutes taken to complete the review 20
+Specific comments on what is readable and what is not
+In MarioItemHandler.cs, the readability is good. In HandlerCollsion method, if there is a collision between Mario and item, 
+then call specific item to handle the response of collision. But the name of file can be improved. MarioItemHandler is a little confusing. 
+Instead MarioItemCollisionHandler is better. Reader can understand it is a class to handler to handle the collision between item and Mario. 
+
+In Flower.cs, and other item.cs file, they take different response based on the collision side.  But he got stateName and compared stateName with a specific statename. 
+It is acceptable, but can be done better. He can just use if(currentPowerState is MarioStarSmallState). 

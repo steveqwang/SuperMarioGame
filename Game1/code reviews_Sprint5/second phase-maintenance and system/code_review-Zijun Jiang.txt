@@ -1,0 +1,29 @@
+Author of the code review Zijun Jiang
+Date of the code review 4/8/2019
+Sprint number 5
+Name of the .cs file being reviewed AllCollisionHandler.cs
+Author of the .cs file being reviewed Weizi Cai
+Specific comments on code quality:
+Overall, the code quality is good. The author tries to refactor allcollsionhandler to minum the codelines and move some codes into specific collisionhandler to
+reduce coupling. I can see the author tried to avoid static method such that he used constructor and make nonstatic calles inside the code, examples can be found
+as following:
+ 	.......
+        private FireBallBlockHandler FBHandler;
+       ........
+
+        public AllCollisionHandler(GameStateManager gameState) {
+            this.gameState = gameState;
+            Level = gameState.world;
+            mario = gameState.world.Mario;
+            .......
+            FBHandler = new FireBallBlockHandler();
+            .......
+        }
+So the author called it here to avoid static method so he can use this FBHandler method later in this .cs file like:
+
+	 FBHandler.FireBallHandleLoop(BlocksAround, fireball);
+               
+         FEHandler.FireBallHandleLoop(BlocksAround, fireball, fireballBox, Level, mario); 
+So I think the author is making good example of avoiding static method. 
+Another thing I notice why author want to do this is try to reduce the complexity of the code, by mininuming functionality of the method, we can let allcolliision
+Handler.cs to focus more on detect collision and let others to be more specific. Like the idea to abstrlize the allHandler.

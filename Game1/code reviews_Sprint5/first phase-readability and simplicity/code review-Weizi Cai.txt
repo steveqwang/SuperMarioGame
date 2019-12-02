@@ -1,0 +1,43 @@
+Author of the code review																	 Weizi Cai
+Date of the code review																		  4/3/2018
+Sprint number 5
+Name of the .cs file being reviewed:									                  MenuState.cs
+Author of the .cs file being reviewed							  Jiaqi Wang Wubing Tang & Zijun Jiang
+Number of minutes taken to complete the review													45 min
+
+
+Specific comments on what is readable and what is not:
+
+
+comments in general:
+Generally speaking, MenuState.cs file have a medium-high readability.
+
+comments in specific aspects:
+
+-------------------------------------------------------   1   ---------------------------------------------
+
+readability
+score: 3/5
+
+"quote: As we know, In the context of programming, program design, or design in general, a design exhibits some flexibility 
+if it can adapt to new, different, or changing requirements. Eliminating the term the requirements,which stress the 
+design process too much, flexibility refers to the unexpectedly many ways in which a design can be used."
+
+General speaking, the structure in MunuState have a pretty high flexibility, because all of them follow the same patern, each function
+has a clear purpose, and we can add anything we want easily, such as new text display, new image etc.
+However, because we have only just started on it, we haven't modified the structure of it, so to someone who is not very familiar our 
+codes, might be a little hard for them to add new features.
+
+/////
+    SoundManager.Instance.PlayMenuSong();
+            this.gameStateManager = gameStateManager;
+            OptionIndex = 0;
+            options = new Option[2];
+            optionsLocations = new Vector2[]{ new Vector2(130, 100),new Vector2(130, 200) };
+            options[0] = Option.Play;
+            options[1] = Option.Quit;
+            canExecute = true;
+/////
+
+this is an example of something we can organize them better. Such that even in the future we got more features, we can still handle them 
+easily, we could put some of them in a new method to make it more intuitive. 

@@ -1,0 +1,12 @@
+﻿For this sprint there is a great improvement of our using the Azure Team Service in which we could manage and distribute the tasks, and finish each of them 
+in certain order on time. And this time, we started the sprint and setup the tasks beforehand, so we dont't need to change the plan or add any more items to 
+the todo list during the sprint. In terms of group time spending and group management, we did a great job due to our well managing the tasks and time. It allows
+more linear compared with the sprint2. Team members updated their works progress more frequently, which makes the work flow more smoothy and the overall progress 
+is more accurate and it really identifies all pieces of process on the project. 
+
+However, there are still rooms for the improvement. In terms of work delegation, each team had a balancTeam members finish their own jobs with less time and spend
+more time on the code quality. For the weak points, the sprite still need to be modified since there are still some instructions which cannot execute perfectly. 
+For sprint3, we firstly finished the sprite part on time and then the other items and scenery. Finally we update the main class, which somehow makes it a little hard to
+find where the problem is when the code fails. And in the future, we should split the overall project into more tiny tasks so that team members can finish each of them in order, which would allow everyone to
+execute and run the game after each time of their modification. Since we can see the final part of the chart shows that we met some problems when it's being tested, and 
+we spend extra 5 hours for refactoring.

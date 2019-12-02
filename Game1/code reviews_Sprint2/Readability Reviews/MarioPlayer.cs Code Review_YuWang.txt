@@ -1,0 +1,41 @@
+﻿Author of the coed review: Yu Wang
+2/6/2019
+Sprint 2
+MarioPlayer.cs
+Author of the .cs file being reviewed: Wubin Tang
+Number of minutes taken to complete the review: 16
+Specific comments on what is readable and what is not
+
+namespace Game1.Player
+{
+    public class MarioPlayer
+    {
+        public enum MarioPowerState { SmallState, BigState, FireState }
+        public MarioPowerState currentPowerState;
+        public IMarioAnimationState state;
+        public double time;
+        private bool ifUpdate;
+        private double delay = 0.1;
+
+        public MarioPlayer()
+        {
+            currentPowerState = MarioPowerState.SmallState;
+            state = new MarioRightIdleState(this);
+            ifUpdate = false;
+        }
+      
+        public void Up()
+        {
+            if (ifUpdate)
+            {
+                state.Up();
+            }
+        }
+
+		...
+	}
+}
+
+The code is quite readable. The class initialize the value of ifUpdate to false. The value delay is set to false.
+The delay value can be set to read only since it won't be changed in the class. And the value ifUpdate can be changed to other
+words like "action". 

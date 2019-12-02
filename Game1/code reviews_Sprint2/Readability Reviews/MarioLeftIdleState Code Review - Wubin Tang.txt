@@ -1,0 +1,77 @@
+﻿Wubin Tang
+2019/2/6
+Sprint 2
+MarioLeftIdleState.cs
+Yu Wang
+20 minutes
+Specific comments on what is readable and what is not:
+
+The code is readable. The methods are transparent to identify the state transition. For example, 
+Left method can change the state to MarioLeftRunstate. However, the if-else statement in the constructor 
+is not very readable. I think using a switch-case statement can increase readability, which can shorten 
+the length of the code and make the conditions clearer. At the same time, I found that all MarioState use 
+the idle method, but there is no specific body. Maybe you can remove the idle method.
+
+namespace Game1.States
+{
+    public class MarioLeftIdleState : IMarioAnimationState
+    {
+        private ISprite sprite;
+        private MarioPlayer player;
+
+        public MarioLeftIdleState(MarioPlayer player)
+        {
+            this.player = player;
+            if (player.currentPowerState == MarioPlayer.MarioPowerState.SmallState)
+            {
+                sprite = MarioSpritesFactory.instance.CreateSmallMarioLeftIdleSprite();
+            }
+            else if (player.currentPowerState == MarioPlayer.MarioPowerState.FireState)
+            {
+                sprite = MarioSpritesFactory.instance.CreateFireMarioLeftIdleSprite();
+            }
+            else
+            {
+                sprite = MarioSpritesFactory.instance.CreateBigMarioLeftIdleSprite();
+            }
+        }
+
+        public void Down()
+        {
+            if (player.currentPowerState != MarioPlayer.MarioPowerState.SmallState)
+            {
+                player.state = new MarioLeftCrouchState(player);
+            }
+        }
+
+        public void Idle()
+        {
+            // Nothing to do here
+        }
+
+        public void Left()
+        {
+            player.state = new MarioLeftRunState(player);
+        }
+
+        public void Right()
+        {
+            player.state = new MarioRightIdleState(player);
+        }
+
+        public void Up()
+        {
+            player.state = new MarioLeftJumpState(player);
+        }
+
+        public void Update()
+        {
+            sprite.Update();
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        {
+            sprite.Draw(spriteBatch, location);
+        }
+    }
+}

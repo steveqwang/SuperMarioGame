@@ -1,0 +1,23 @@
+Author of the code review Zijun Jiang
+Date of the code review 4/21/19
+Sprint number 6
+Name of the .cs file being reviewed FireHellMarioHandler.cs
+Author of the .cs file being reviewed Weizi Cai
+Specific comments on code quality:
+
+Overall, the code quality is good. The Handler itself follows all other collision handler cases. The main method is here is handleCollision. The basic
+logic inside of this is by loop method to determine how to handle it specifically and then go to handler collision method:
+
+private void HandleCollision(IPlayer mario, FireHell fireHell, Direction direction)
+        {
+            fireHell.IsRemove = true;
+            if (!(mario.CurrentPowerState is MarioStarBigState || mario.CurrentPowerState is MarioStarSmallState))
+            {
+                mario.TakeDamage();
+            }
+        }
+
+It is simple enough to tell us that if mario collision with firehell, we should call mario.takedamage()to let mario decrease a life or something like this.
+
+The maintainbility is good since it focuses on its main job and have high cohension. But I would suggest the author to have a Interface for all collsion handler since it
+may have same method type and other similar property. By doing this, we can make all collision handler to be more useful and other be more maintainbility.

@@ -1,0 +1,67 @@
+﻿Author of the code review: Wubin Tang
+Date of the code review: 4/21
+Sprint number 6
+Name of the.cs file being reviewed: fireHell.cs FireShot.cs SoundFactory.cs
+Author of the.cs file being reviewed Yu Wang
+Specific comments on code quality:
+
+ public class FireHell : IGameObject
+    {
+        public Vector2 Speed { get; set; }
+        public bool IsRemove { get; set; }
+        public Vector2 Location { get; set; }
+        private ISprite sprite;
+        public Rectangle Rectangle => new Rectangle((int)Location.X, (int)Location.Y, sprite.Width, sprite.Height);
+        public Vector2 Velocity { get; set; }
+        private float fireHellLife;
+
+        public FireHell (Vector2 location)
+        {
+            Velocity = new Vector2(0, -100);
+            sprite = GameSpriteFactory.Instance.CreateFireHellSprite();
+            Location = location;
+            IsRemove = false;
+            fireHellLife = (float)Util.Instance.Five;
+        }
+
+        public void Move()
+        {
+            Velocity = new Vector2(Velocity.X, Util.Instance.FireHellVelocity);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (!IsRemove)
+            {
+                sprite.Draw(spriteBatch, Location);
+            }
+            else
+            {
+                Location = new Vector2(Location.X, 224);
+                IsRemove = false;
+            }
+        }
+
+        public void Update(GameTime gametime)
+        {
+            fireHellLife -= (float)gametime.ElapsedGameTime.TotalSeconds;
+            if(fireHellLife <= 0)
+            {
+                IsRemove = true;
+                fireHellLife = (float)Util.Instance.Five;
+
+            }
+            else
+            {
+                Move();
+            }
+            float deltaTime = (float)gametime.ElapsedGameTime.TotalSeconds;
+            Location += Velocity * deltaTime;
+            sprite.Update(gametime);
+        }
+
+
+Gnerally, the readibility of the code is good. However, the name of this class is wired and confusing. I cannot distinguish fireball, firehell and fireshot.
+Maybe, you can change the name of these classes. fireHellLife is also hard to understand.
+In addition, for soundFactory.cs file some vars' name are weired and hard to understand. For example, in Koopa.cs file, bool isStomped and isKicked are used for soundfactory. But their names
+cannot help people understand what they are doing and may let reader misunderstand with some method name in koopa.cs. 

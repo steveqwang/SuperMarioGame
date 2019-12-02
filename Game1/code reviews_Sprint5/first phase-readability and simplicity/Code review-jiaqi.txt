@@ -1,0 +1,16 @@
+﻿Author of the code review
+Jiaqi Wang
+Date of the code review
+4/3/2018
+Sprint number
+5
+Name of the .cs file being reviewed
+MenuState.cs
+Author of the .cs file being reviewed
+Zijun Jiang
+Number of minutes taken to complete the review
+10min
+Specific comments on what is readable and what is not
+Gnerally, the readibility of the code is good. The overall logic in MenuState is to let player press up and down to select Enter 
+the game or quit. The code in MenuState makes developers easy to understand the logic. What's more, there is a coolDown mechanism that prevents selectos moving too fast. 
+However,there are some magic numbers in the code. In this case, he needs to move the magic number into Util class in refactoring stage. 

@@ -1,0 +1,18 @@
+﻿Author of the code review: Jiaqi Wang
+Date of the code review: 2/11/2019
+Sprint Number:2
+Name of the cs file being reviewed: Game1.cs
+Author of the cs file being reviewed: Weizi Cai
+Comments on code quality:
+
+The code quality of Game1.cs is good and it can meet the requirement of Sprint2. It has different initialize methods to initialize different kinds
+of objects like Mario, Enemy and item. And in draw and update method, it calls the draw and update method in each object respectively, so
+if the implementation of update and draw method in different objects changed, the Game1.cs won't be affected. But code in Game1.cs might not
+ be able to accommodate with future updatings. In ItemsInitialize method, it creates each item once with fixed position. In the future,
+ the task would be more complicated instead of just showing different items like Sprint2. What's more, in a real game, it needs same object
+ to be displayed many times, but in ItemsInitialize method, same object just be created only one time. 
+
+ A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+
+ After initialization, users want to see same items showed many times. For example, in a real Mario game, there might be a lot of mushrooms, flowers and coins. 
+ If we want to do the samething in Game1.cs, it would require a lot of codes in ItemsInitialize method, which is unacceptable. 

@@ -1,0 +1,59 @@
+Review author: Zijun Jiang
+Date: 3/25/2019
+Sprint 4
+
+File: Fireball.cs MarioPhysicalProperty.cs
+Author of the .cs file: Jiaqi Wang
+Time taken: 30 min
+Comments on code quality:
+        public void run()
+        {
+            if (isInitialRun)
+            {
+                Velocity = new Vector2(mario.isFacingLeft ? -50 : 50, Velocity.Y);
+                isInitialRun = false;
+            }
+            Accerlation = new Vector2(mario.isFacingLeft ? -100 : 100, 640);
+        }
+        public void ResetRun()
+        {
+            isInitialRun = true;
+        }
+        public void UpdateRunningAcceleration()
+        {
+            if(mario.CurrentAnimationState is MarioDeadState)
+            {
+                Velocity = new Vector2(0, Velocity.Y);
+                Accerlation = new Vector2(0, Accerlation.Y);
+                ResetRun();
+            }
+            if(mario.CurrentAnimationState is MarioLeftIdleState &&mario.PreviousAnimationState is MarioLeftRunState
+                || mario.CurrentAnimationState is MarioLeftIdleState && mario.PreviousAnimationState is MarioLeftIdleState)
+            {
+                
+                Accerlation = new Vector2(100, Accerlation.Y);
+                if (Velocity.X >= 0)
+                {
+                    Velocity = new Vector2(0, Velocity.Y);
+                    Accerlation = new Vector2(0, Accerlation.Y);
+                    ResetRun();
+                }
+            }
+            if (mario.CurrentAnimationState is MarioRightIdleState && mario.PreviousAnimationState is MarioRightRunState
+                || mario.CurrentAnimationState is MarioRightIdleState && mario.PreviousAnimationState is MarioRightIdleState)
+            {
+                Accerlation = new Vector2(-100, Accerlation.Y);
+                if (Velocity.X <= 0)
+                {
+                    Velocity = new Vector2(0, Velocity.Y);
+                    Accerlation = new Vector2(0, Accerlation.Y);
+                    ResetRun();
+                }
+            }
+
+These code is coming from the marioPhysicalProperty.cs. I can understand the code functionality easily with its logic. each method is hadnling some cases while 
+Mario is running with accerlation. Especially, those boolean variable makes sense in this code such as isInitialRun. However, I notice that the if statement is very long 
+and a little bit hard coded. I will suggest the author to have another boolen to handle the if statement and make it short. Another thing I would say is that the firction 
+force is not obviously with this code. I would say maybe we can give another method for firction force. Last but not least, I think updateRuningAccerlation is very general 
+cases, it has a very low cohension so I would suggest to split this method.
+

@@ -1,0 +1,74 @@
+﻿Author of the code review： Zijun Jiang
+Date of the code review	：2/20/2018
+Sprint number 3
+Name of the .cs file being reviewed ：controller class and command class
+Author of the .cs file being reviewer:  Weizi Cai
+Number of minutes taken to complete the review:	27 min
+
+
+Specific comments on what is readable and what is not:
+
+Generally speaking, this piece of code have a relatively mild readability, it keeps mapping between keyboard and playboard and mouse. It also keeps
+Standards of indentation and formatting are followed, so that the code and its structure are clearly visible. I want to put 3 examples to discuss the quality of the code
+
+Case 1:
+
+example: in GamepadController.cs and KeybroadController.cs
+they both Inherited this update method from upper level interface called Icontroller, however, I think
+this author should place the update method to the end of the file, such that it would be easier for people 
+to read. 
+
+another place is, specificly, in the class KeybroadController, the author put 
+
+////
+	        private readonly Dictionary<Keys, ICommand> MappingDictionary;
+
+////
+
+in the middle of constructor and update method, this is anti-pattern, I think this is a mistake made by author
+even C# support variable initial after calling, but this affacted the readability of code
+
+
+Case 2:
+
+Variables are named meaningfully, so that they communicate intent.
+
+example: in GamepadController.cs
+
+/////
+	
+		private readonly Dictionary<Buttons, ICommand> buttonCommandDict;
+		....
+        GamePadState state = GamePad.GetState(PlayerIndex.One);
+		....
+        KeyValuePair<Buttons, ICommand> buttonCommandPair in buttonCommandDict.
+		....
+
+/////
+
+in terms of private and public variables, the author did a good job on specified public and private to prevent 
+information leak, however,  KeyValuePair<Keys, ICommand> CurrentPair is not a really good naming.
+
+Case 3:
+Functions are short and to the point, and do one thing.
+
+for example, in all the commands classes, functions are clear and short, they do what they should do
+/////
+   class MarioTurnRightCommand : Interfaces.ICommand
+    {
+        private IPlayer player;
+
+        //constructor
+        public MarioTurnRightCommand(IPlayer player)
+        {
+            this.player = player;
+        }
+        public void Execute()
+        {
+            player.IsIdle = false;
+            player.Location += new Vector2(2, 0);
+            player.CurrentAnimationState.Right();
+        }
+////
+
+all functions in command classes are similar, and easy to read.

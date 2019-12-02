@@ -1,0 +1,65 @@
+﻿Author of the code review: Yu Wang
+Date of the code review: 4/3/2019
+Sprint Number: 5
+Name of the .cs file being reviewed: FlagStuff.cs
+Author of the .cs files being reviewed: Wubin Tang
+Number of minutes taken to complete the review: 15 min
+
+namespace Game1.GameTool
+{
+    public class FlagStuff : IGameObject
+    {
+        public Vector2 Speed { get; set; }
+        public bool IsRemove { get; set; }
+        public Vector2 Location { get; set; }
+        public bool LowerFlagStuff { get; set; }
+        public bool FinishFlagStuff { get; set; }
+        public int FrameIndex { get; set; }
+
+        public Rectangle Rectangle => new Rectangle((int)Location.X, (int)Location.Y, flagStuffSprite.Width, flagStuffSprite.Height);
+
+        private ISprite flagStuffSprite;
+        private double deltaTime;
+        private double flagTime;
+       
+
+        public FlagStuff(Vector2 location)
+        {
+            Location = location;
+            flagStuffSprite = GameSpriteFactory.Instance.CreateFlagStuffSprite();
+            IsRemove = false;
+            LowerFlagStuff = false;
+            FinishFlagStuff = false;
+            FrameIndex = 1;
+            flagTime = 0.1f;
+
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            flagStuffSprite.Draw(spriteBatch, Location);
+        }
+        public void Update(GameTime gametime)
+        {
+            if (LowerFlagStuff)
+            {
+                flagStuffSprite.Update(gametime);
+                if(FrameIndex == 5)
+                {
+                    LowerFlagStuff = false;
+                    FinishFlagStuff = true;
+                }
+                deltaTime = deltaTime + gametime.ElapsedGameTime.TotalSeconds;
+                if(deltaTime > flagTime)
+                {
+                    ++FrameIndex;
+                    deltaTime = 0;
+
+                }
+            }
+        }
+    }
+}
+
+The code in this file is not that large and it is currently handling the things in the final part of the game. Now the flag can be lowered but 
+mario cannot lower with the flag. In the future, we can add more details to the mario to make it move down with the flag, which will make the end
+of the level better. Also, there is some magic numbers which still need to be sumrized in the Util class. However, the class works really well. 

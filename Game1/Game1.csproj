@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CDDD8993-B053-479A-89E0-834366B42C3D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Game1</RootNamespace>
+    <AssemblyName>Game1</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>Windows</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Blocks\BeveledBlock.cs" />
+    <Compile Include="Blocks\BrickBlock.cs" />
+    <Compile Include="Blocks\GroundBlock.cs" />
+    <Compile Include="Blocks\HiddenBlock.cs" />
+    <Compile Include="Blocks\Pipe.cs" />
+    <Compile Include="Blocks\QuestionBlock.cs" />
+    <Compile Include="Blocks\UsedBlock.cs" />
+    <Compile Include="Camera\Camera.cs" />
+    <Content Include="code reviews_Sprint5\first phase-readability and simplicity\Code Review - Wubin Tang.txt" />
+    <Compile Include="CheatCodes\AllCheatCodesManager.cs" />
+    <Compile Include="Collisions\AllCollisionHandler.cs" />
+    <Compile Include="Collisions\BossBlockHandler.cs" />
+    <Compile Include="Collisions\EnemyBlockHandler.cs" />
+    <Compile Include="Collisions\FireBallBlockHandler.cs" />
+    <Compile Include="Collisions\FireBallBossHandler.cs" />
+    <Compile Include="Collisions\FireBallEnemyHandler.cs" />
+    <Compile Include="Collisions\FireHellMarioHandler.cs" />
+    <Compile Include="Collisions\FireHellMarioHandler.Designer.cs">
+      <DependentUpon>FireHellMarioHandler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Collisions\FireShotBlockHandler.cs" />
+    <Compile Include="Collisions\FireShotMarioHandler.cs" />
+    <Compile Include="Collisions\ItemBlockHandler.cs" />
+    <Compile Include="Collisions\MarioBossHandler.cs" />
+    <Compile Include="Collisions\MarioCastleCollisionHandler.cs" />
+    <Compile Include="Collisions\MarioFlagStuffHandler.cs" />
+    <Compile Include="Collisions\ShellBossHandler.cs" />
+    <Compile Include="Collisions\ShellEnemyHandler.cs" />
+    <Compile Include="Collisions\MarioBlockHandler.cs" />
+    <Compile Include="Collisions\MarioEnemyHandler.cs" />
+    <Compile Include="Collisions\MarioItemHandler.cs" />
+    <Compile Include="Commands\ActionCommand.cs" />
+    <Compile Include="Commands\MarioFireBallCommand.cs" />
+    <Compile Include="Commands\MarioPowerupCommand.cs" />
+    <Compile Include="Commands\MouseCommand.cs" />
+    <Compile Include="Commands\PressQToQuitCommand.cs" />
+    <Compile Include="Commands\PressRToRestCommand.cs" />
+    <Compile Include="Commands\MarioGoDownCommand.cs" />
+    <Compile Include="Commands\MarioGoUpCommand.cs" />
+    <Compile Include="Commands\MarioTurnBigCommand.cs" />
+    <Compile Include="Commands\MarioTurnDeadCommand.cs" />
+    <Compile Include="Commands\MarioTurnFireCommand.cs" />
+    <Compile Include="Commands\MarioTurnIdleCommand.cs" />
+    <Compile Include="Commands\MarioTurnLeftCommand.cs" />
+    <Compile Include="Commands\MarioTurnRightCommands.cs" />
+    <Compile Include="Commands\MarioTurnSmallCommand.cs" />
+    <Compile Include="Controllers\GamePadController.cs" />
+    <Compile Include="Controllers\KeybroadController.cs" />
+    <Compile Include="Controllers\MouseController.cs" />
+    <Compile Include="Enemies\Bowser.cs" />
+    <Compile Include="Enemies\Goomba.cs" />
+    <Compile Include="Enemies\Koopa.cs" />
+    <Compile Include="Factories\BlockSpritesFactory.cs" />
+    <Compile Include="Factories\EnemySpritesFactory.cs" />
+    <Compile Include="Factories\GameSpriteFactory.cs" />
+    <Compile Include="Factories\ItemFactory.cs" />
+    <Compile Include="Factories\MarioSpritesFactory.cs" />
+    <Compile Include="Factories\MenuFactory.cs" />
+    <Compile Include="Factories\ScenerySpriteFactory.cs" />
+    <Compile Include="Factories\SoundFactory.cs" />
+    <Compile Include="Factories\WorldFactory.cs" />
+    <Compile Include="GameStates\GameOverState.cs" />
+    <Compile Include="GameStates\GameStateManager.cs" />
+    <Compile Include="GameStates\GameWinState.cs" />
+    <Compile Include="GameStates\MenuState.cs" />
+    <Compile Include="GameStates\TransitionState.cs" />
+    <Compile Include="GameStates\WorldState.cs" />
+    <Compile Include="GameTool\Castle.cs" />
+    <Compile Include="GameTool\Fireball.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="GameTool\FireHell.cs" />
+    <Compile Include="GameTool\FireShot.cs" />
+    <Compile Include="GameTool\FlagStuff.cs" />
+    <Compile Include="Interfaces\IBlock.cs" />
+    <Compile Include="Interfaces\IBlockState.cs" />
+    <Compile Include="Interfaces\IBoss.cs" />
+    <Compile Include="Interfaces\ICheatCode.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="Interfaces\IEnemy.cs" />
+    <Compile Include="Interfaces\IEnemyActionState.cs" />
+    <Compile Include="Interfaces\IGameObject.cs" />
+    <Compile Include="Interfaces\IGameState.cs" />
+    <Compile Include="Interfaces\IItem.cs" />
+    <Compile Include="Interfaces\IMarioAbilityState.cs" />
+    <Compile Include="Interfaces\IMarioPowerState.cs" />
+    <Compile Include="Interfaces\IMisc.cs" />
+    <Compile Include="Interfaces\IObjects.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\IScenery.cs" />
+    <Compile Include="Interfaces\ISprite.cs" />
+    <Compile Include="Interfaces\IMarioActionState.cs" />
+    <Compile Include="Interfaces\IActionState.cs" />
+    <Compile Include="Interfaces\IWorld.cs" />
+    <Compile Include="Items\Flower.cs" />
+    <Compile Include="Items\Gold.cs" />
+    <Compile Include="Items\GreenMushroom.cs" />
+    <Compile Include="Items\RedMushroom.cs" />
+    <Compile Include="Items\Star.cs" />
+    <Compile Include="Library\BlockArray.cs" />
+    <Compile Include="PhysicalProperty\BlocksPhysicalProperty.cs" />
+    <Compile Include="PhysicalProperty\BossPhysicalProperty.cs" />
+    <Compile Include="PhysicalProperty\EnemyPhysicalProperty.cs" />
+    <Compile Include="PhysicalProperty\FireballPhysicalProperty.cs" />
+    <Compile Include="PhysicalProperty\ItemPhysicalProperty.cs" />
+    <Compile Include="PhysicalProperty\MarioPhysicalProperty.cs" />
+    <Compile Include="Player\MarioPlayer.cs" />
+    <Compile Include="portal\EnemyPortal.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenery\BigBush.cs" />
+    <Compile Include="Scenery\BigCloud.cs" />
+    <Compile Include="Scenery\BigHill.cs" />
+    <Compile Include="Scenery\SmallBush.cs" />
+    <Compile Include="Scenery\SmallCloud.cs" />
+    <Compile Include="Scenery\SmallHill.cs" />
+    <Compile Include="Score\ScoreObject.cs" />
+    <Compile Include="Sound\SoundManager.cs" />
+    <Compile Include="Sprites\DynamicSprite.cs" />
+    <Compile Include="Sprites\StaticSprite.cs" />
+    <Compile Include="States\BlockDisappearedState.cs" />
+    <Compile Include="States\BowserMoveState.cs" />
+    <Compile Include="States\BrickShowedState.cs" />
+    <Compile Include="States\GoombaFlippedState.cs" />
+    <Compile Include="States\GoombaMoveState.cs" />
+    <Compile Include="States\GoombaStompedState.cs" />
+    <Compile Include="States\HiddenBlockState.cs" />
+    <Compile Include="States\KoopaFlippedState.cs" />
+    <Compile Include="States\KoopaMoveState.cs" />
+    <Compile Include="States\KoopaStompedKickedState.cs" />
+    <Compile Include="States\KoopaStompedState.cs" />
+    <Compile Include="States\MarioAbilityFireShootState.cs" />
+    <Compile Include="States\MarioAbilityRunState.cs" />
+    <Compile Include="States\MarioBigState.cs" />
+    <Compile Include="States\MarioClimbState.cs" />
+    <Compile Include="States\MarioDeadState.cs" />
+    <Compile Include="States\MarioEndGameState.cs" />
+    <Compile Include="States\MarioFireState.cs" />
+    <Compile Include="States\MarioLeftCrouchState.cs" />
+    <Compile Include="States\MarioLeftIdleState.cs" />
+    <Compile Include="States\MarioLeftJumpState.cs" />
+    <Compile Include="States\MarioLeftRunState.cs" />
+    <Compile Include="States\MarioRightCrouchState.cs" />
+    <Compile Include="States\MarioRightIdleState.cs" />
+    <Compile Include="States\MarioRightJumpState.cs" />
+    <Compile Include="States\MarioRightRunState.cs" />
+    <Compile Include="States\MarioSmallState.cs" />
+    <Compile Include="States\MarioStarBigState.cs" />
+    <Compile Include="States\MarioStarSmallState.cs" />
+    <Compile Include="States\QuestionBlockStates.cs" />
+    <Compile Include="States\UsedBlockState.cs" />
+    <Compile Include="Utility\Util.cs" />
+    <Compile Include="World\World.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="code reviews_Sprint2\Maintainability Reviews\Command code review -Jiaqi.txt" />
+    <Content Include="code reviews_Sprint2\Maintainability Reviews\Game1.cs code review - Jiaqi.txt" />
+    <Content Include="code reviews_Sprint2\Maintainability Reviews\MarioPlayer.cs code review - Yu.txt" />
+    <Content Include="code reviews_Sprint2\Maintainability Reviews\MarioSpritesFactory code review-Wubin.txt" />
+    <Content Include="code reviews_Sprint2\Maintainability Reviews\Blocks code review -Weizi.txt" />
+    <Content Include="code reviews_Sprint2\Readability Reviews\Command code review -Jiaqi.txt" />
+    <Content Include="code reviews_Sprint2\Readability Reviews\Game1.cs Code Review-Jiaqi Wang.txt" />
+    <Content Include="code reviews_Sprint2\Readability Reviews\KeyboardController.cs Code review - Jiaqi.txt" />
+    <Content Include="code reviews_Sprint2\Readability Reviews\MarioLeftIdleState Code Review - Wubin Tang.txt" />
+    <Content Include="code reviews_Sprint2\Readability Reviews\MarioPlayer.cs Code Review_YuWang.txt" />
+    <Content Include="code reviews_Sprint2\Readability Reviews\Block code review - Weizi Cai.txt" />
+    <Content Include="code reviews_Sprint3\first phase-readability and simplicity\code review - Wubin Tang.txt" />
+    <Content Include="code reviews_Sprint3\first phase-readability and simplicity\enemies_class_review-Cai.txt" />
+    <Content Include="code reviews_Sprint3\first phase-readability and simplicity\Sprint3 Readability code Review-Jiaqi.txt" />
+    <Content Include="code reviews_Sprint3\first phase-readability and simplicity\Sprite Files code review-Yu.txt" />
+    <Content Include="code reviews_Sprint3\second phase-maintenance and system\code review - Wubin Tang.txt" />
+    <Content Include="code reviews_Sprint3\second phase-maintenance and system\code review - Yu Wang.txt" />
+    <Content Include="code reviews_Sprint3\second phase-maintenance and system\code review-Weizi Cai.txt" />
+    <Content Include="code reviews_Sprint4\first phase-readability and simplicity\code review- Wubin Tang.txt" />
+    <Content Include="code reviews_Sprint4\first phase-readability and simplicity\code review-Weizi Cai.txt" />
+    <Content Include="code reviews_Sprint4\first phase-readability and simplicity\code review-Yu Wang.txt" />
+    <Content Include="code reviews_Sprint4\first phase-readability and simplicity\Readibility Code Review-Jiaqi Wang.txt" />
+    <Content Include="code reviews_Sprint4\second phase-maintenance and system\code review - Wubin Tang.txt" />
+    <Content Include="code reviews_Sprint4\second phase-maintenance and system\code review - Yu Wang.txt" />
+    <Content Include="code reviews_Sprint4\second phase-maintenance and system\code review- Jiaqi Wang.txt" />
+    <Content Include="code reviews_Sprint4\second phase-maintenance and system\code review-Weizi Cai.txt" />
+    <Content Include="code reviews_Sprint5\first phase-readability and simplicity\Code Review - Yu Wang.txt" />
+    <Content Include="code reviews_Sprint5\first phase-readability and simplicity\Code review-jiaqi.txt" />
+    <Content Include="code reviews_Sprint5\first phase-readability and simplicity\code review-Weizi Cai.txt" />
+    <Content Include="code reviews_Sprint5\first phase-readability and simplicity\CodeReview-Jiaqi.txt" />
+    <Content Include="code reviews_Sprint5\first phase-readability and simplicity\Zijun Jiang.txt" />
+    <Content Include="code reviews_Sprint5\second phase-maintenance and system\code review - Wubin Tang.txt" />
+    <Content Include="code reviews_Sprint5\second phase-maintenance and system\code review -jiaqi wang.txt" />
+    <Content Include="code reviews_Sprint5\second phase-maintenance and system\code review-Weizi Cai.txt" />
+    <Content Include="code reviews_Sprint6\first phase-readability and simplicity\Code Review - Wubin Tang.txt" />
+    <Content Include="code reviews_Sprint6\first phase-readability and simplicity\code review - Yu Wang.txt" />
+    <Content Include="code reviews_Sprint6\first phase-readability and simplicity\code review-Weizi Cai.txt" />
+    <Content Include="code reviews_Sprint6\second phase-maintenance and system\Code Review - Wubin Tang.txt" />
+    <Content Include="code reviews_Sprint6\second phase-maintenance and system\Code Review - Yu Wang.txt" />
+    <Content Include="code reviews_Sprint6\second phase-maintenance and system\code review-Weizi Cai.txt" />
+    <Content Include="Icon.ico" />
+    <Content Include="Team Reflection\Sprint2-TeamReflection.txt" />
+    <Content Include="Team Reflection\Sprint3-TeamReflection.txt" />
+    <Content Include="Team Reflection\Sprint5-TeamReflection.txt" />
+    <Content Include="Team Reflection\Sprint6-TeamReflection.txt" />
+    <Content Include="Team Reflection\Sprint4-TeamReflection.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.manifest" />
+    <None Include="code reviews_Sprint6\second phase-maintenance and system\Code Review_Zijun Jiang" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

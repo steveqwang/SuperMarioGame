@@ -1,0 +1,16 @@
+Author of the code review
+Jiaqi Wang
+Date of the code review
+4/21/2018
+Sprint number
+6
+Name of the .cs file being reviewed
+AllCheatCodesManager.cs
+Author of the .cs file being reviewed
+Zijun Jiang
+Number of minutes taken to complete the review
+10min
+Specific comments on what is readable and what is not
+Gnerally, the readibility of the code is good. The overall logic in AllCheatCodesManager is get user input and check wheter the user input matches any 
+cheat code. If there is a match, invoke the cheat code like Mario go big. The readibility of the code is nice. The name of method can indicate the function of 
+method and there are also some comments to demonstrate how the code works. 

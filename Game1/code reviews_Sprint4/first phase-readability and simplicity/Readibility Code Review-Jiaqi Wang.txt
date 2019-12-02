@@ -1,0 +1,19 @@
+Author of the code review
+Jiaqi Wang
+Date of the code review
+3/8/2018
+Sprint number
+4
+Name of the .cs file being reviewed
+ShellEnemyHandler.cs
+EnemyBlockHandler.cs
+Author of the .cs file being reviewed
+Wubin Tang
+Number of minutes taken to complete the review
+20min
+Specific comments on what is readable and what is not
+In EnemyBlock class, the readibility of HandleCollision is good. when the method is called, it just call the CollisionWithEnemy method
+to deal with the collision between enemy and block. However, In UpdateLocation method, the readibility can be improved. In each
+case, it has something to do with enemy.EnemyPhysics. Maybe it can move everything with enemy.EnemyPhysics to a new method 
+call UpdatePhysics or something. 
+In ShellEnemyHandler, the name of parameters should be improved because just naming enemy2 and enemy1 would be confusing.

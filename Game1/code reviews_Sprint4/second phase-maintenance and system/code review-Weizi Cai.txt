@@ -1,0 +1,31 @@
+Author of the code review																	 Weizi Cai
+Date of the code review																		 3/25/2018
+Sprint number 4
+Name of the .cs file being reviewed:							   All cs file under Collisions folder
+Author of the .cs file being reviewed							  Jiaqi Wang Wubing Tang & Zijun Jiang
+Number of minutes taken to complete the review										    around 30 mins
+
+
+Specific comments on maintainance and system:
+
+
+comments in general:
+A code smell is a hint that something has gone wrong somewhere in your code. Use the smell to track down the problem. Based on
+my first code smell of this code, I get this conclusion:
+Generally speaking, all 9 .cs file in Collision have a pretty good maintainance quality, however, we need to work harder on
+flexibility of the system.
+
+comments in specific aspects:
+
+-------------------------------------------------------   1   ---------------------------------------------
+
+maintenance and flexibility of the system
+score: 3/5
+
+These 9 file all have Tightly-coupled components, where functions are not modular, the software is not flexible enough to adapt 
+to changes. The direct result is: even it is easy for us to change and debugging these codes, but it would not be a easy thing to
+add new cases of collisions to it, for example, some file such as shellenemyhandler is very short, while someothers are very long.
+Thus, an abstract would be a great idea. By doing that, we can add new collision cases easily, and make the maintenance hardness even
+lower. That would reduce the tech debts for future.
+
+

@@ -1,0 +1,9 @@
+Author of the code review: Jiaqi Wang
+Date of the code review 2/25/2018
+Sprint number 3
+Name of the .cs file being reviewed Game1.cs and All command.cs files 
+Author of the .cs file being reviewed Weizi Cai
+Specific comments on code quality
+The code quality of game1.cs and command.cs is good. In game1.cs it has different methods responsible for different game phase and it has a variable world to manage the objects like items and enemies instead of just creating in the game1.cs file. But in initialize method, it can separate the initialization of some controllers to a different method like controllersInitialize. It would make codes more readable. And there is some problem in ResetCommand.cs. It manually recreate the controllers and world in Mariogame. Maybe it can call initialize method in game1.cs
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+If I want to make enemy and some other objects to move left and right, it would require a lot of change in command. Because now it just have MarioMovingLeftCommand and MarioMovingRightCommand. But Command for every objects moving left and right is similar because it just call receivers' method to move. 

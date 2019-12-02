@@ -1,0 +1,59 @@
+Author of the code review Jiaqi Wang
+Date of the code review 2/6/2018
+Sprint number 2
+Name of the .cs file being reviewed Game1.cs
+Author of the .cs file being reviewed Weizi Cai
+Number of minutes taken to complete the review 20 min
+Specific comments on what is readable and what is not
+
+ protected override void Initialize()
+        {
+            BlockSpritesFactory.Instance.LoadTextures(Content);
+            MarioSpritesFactory.instance.LoadAllTextures(Content);
+            EnemySpritesFactory.Instance.LoadTextures(Content);
+            ItemFactory.Instance.LoadAllTextures(Content);
+	    // codes above are not readable, move these code into a method called TextureInitialize() would be better. 
+            ObjectsList = new List<IObjects>();
+
+            ItemsInitialize();// very readable method call because code reviewers can know 
+// what has been initialized. 
+		
+            Player = new MarioPlayer();
+            MarioVector = new Vector2(400, 310);//  MarioVector is a little confusing. Change it to MarioPosition would be better because this variable define the position of Mario. 
+
+            ControllersList = new List<IController>();
+            ControllersList.Add(new KeyboardController(this));
+
+            graphics.PreferredBackBufferWidth = 640;  
+            graphics.PreferredBackBufferHeight = 480;   
+            graphics.ApplyChanges();
+
+            base.Initialize();
+        }
+
+Draw and Update methods are very readable. These methods call update and draw method of each game object and controller.
+
+public void ItemsInitialize()
+        {
+            ObjectsList.Add(ItemFactory.Instance.CreateCoinItem(new Vector2(100, 100)));
+            ObjectsList.Add(ItemFactory.Instance.CreateStarItem(new Vector2(150, 100)));
+            ObjectsList.Add(ItemFactory.Instance.CreateGreenMushroomItem(new Vector2(200, 100)));
+            ObjectsList.Add(ItemFactory.Instance.CreateRedMushroomItem(new Vector2(250, 100)));
+            ObjectsList.Add(ItemFactory.Instance.CreateFireFlowerItem(new Vector2(300, 100)));
+
+            ObjectsList.Add(new BeveledBlock(new Vector2(150, 200)));
+            ObjectsList.Add(new HiddenBlock(new Vector2(175, 200)));
+            ObjectsList.Add(new QuestionBlock(new Vector2(200, 200)));
+            ObjectsList.Add(new GroundBlock(new Vector2(225, 200)));
+            ObjectsList.Add(new UsedBlock(new Vector2(250, 200)));         
+            ObjectsList.Add(new BrickBlock(new Vector2(275, 200)));
+  
+            ObjectsList.Add(new Pipe(new Vector2(400, 200)));
+            ObjectsList.Add(new Koopa(new Vector2(400, 150)));
+            ObjectsList.Add(new Goomba(new Vector2(350, 150)));
+        }
+In ItemInitialize method, it calls method in ItemFactory to create Item object and it just 
+call Block objects' constructors to create Block objects. I don't think it is readable. It is 
+better to create all objects by Factories or constructors instead of half objects by Factories and the other by constructors.  
+
+

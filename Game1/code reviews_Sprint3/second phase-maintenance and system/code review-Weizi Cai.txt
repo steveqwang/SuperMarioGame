@@ -1,0 +1,71 @@
+Author of the code review																	 Weizi Cai
+Date of the code review																		 2/25/2018
+Sprint number 3
+Name of the .cs file being reviewed:								  All cs file under Enemies folder
+Author of the .cs file being reviewed														Jiaqi Wang
+Number of minutes taken to complete the review													30 min
+
+
+Specific comments on 
+code quality for maintenance and flexibility of the system:
+
+
+comments in general:
+Generally speaking, this piece of code have a medium-high maintenance, however it has a mild flexibility of system.
+
+
+comments in specific aspects:
+
+-------------------------------------------------------   1   ---------------------------------------------
+
+flexibility
+score: 4/5
+
+"quote: As we know, In the context of programming, program design, or design in general, a design exhibits some flexibility 
+if it can adapt to new, different, or changing requirements. Eliminating the term the requirements,which stress the 
+design process too much, flexibility refers to the unexpectedly many ways in which a design can be used."
+
+In Goomba.cs and Koopa.cs, since some of the methods haven't been implemented yet, and we can't really find any methods
+which is so complex such we can divide a part of it into a seperated method and use it in the future. However, as we have planned,
+the author may will face some more complex enemies mechanism, he should consider about taking some codes out from a long method, 
+and make it as seperated method. So that similar but different methods could share certain functions
+
+Secondly, at current stage, there is one thing this author could do to improve flexibility, which is take these shared methods out:
+
+
+/////
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            State.Draw(spriteBatch, Location);
+        }
+
+        public void Update()
+        {
+            State.Update();
+        }
+/////
+
+Put them into an abstract class, so that he don't have to implement them, whenever we need a new enemy.
+
+
+-------------------------------------------------------   2   ---------------------------------------------
+
+maintainability
+score: 4/5
+
+"Quote: Maintainable code is unit (and functional/integration if needed) tested so that if a change is made that 
+introduces a knock-on effect, it's caught quickly and early, before the code's even checked in."
+
+I think the interface, with these two class that inhirited from it, they all have a pretty good maintainability.
+
+as we can see,        
+		private IEnemyActionState State;
+        public Vector2 Location { get ; set ; }
+        public Rectangle Rectangle => new Rectangle((int)Location.X, (int)Location.Y, State.Width, State.Height);
+
+these common variable were initialized at the beginning, he did a great job on variable single point control.
+However, if there's anything he could change to improve maintainability, as we talk earlier, he could adapt the 
+abstract class structure, so that there is also single point control on methods.
+
+i.e. if there's any change to be made on update method, he could just change one place in the future instead of a lot.

@@ -1,0 +1,13 @@
+﻿Author of the code review: Yu Wang
+Date of the code review: 4/8/2019
+Sprint Number: 5
+Name of the .cs file being viewed: MarioPlayer.cs
+Authored by: Yu Wang
+Time take for review: 10 min
+
+Comments:
+There is a lot going on in this player class. A great number of variables are created here. Also, a great number of if statements are chiefly
+in this class. Besides, this class is over 200 lines. I think this class can be shorter and more conhecient. Since the class
+was growing larger and larger since all team members added methods in this class. And I think we can consider to make 
+the class into several pieces and break it into some classes. I think the game would be more easily to maintain. And the 
+code reviewer will understand the code more easily.

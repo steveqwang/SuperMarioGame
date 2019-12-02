@@ -1,0 +1,12 @@
+﻿Author of the code review: Wubin Tang
+Date of the code review 2019/2/20
+Sprint number: 3
+Name of the .cs file being reviewed: WorldFactory.cs and World.cs
+Author of the .cs file being reviewed: Yu Wang
+Number of minutes taken to complete the review: 25
+Specific comments on what is readable and what is not
+
+Over all, the readability of the file is good. The IPlayer variable name is player in some files, but in some files 
+it is Mario, which will confuse the reader and should be unified. I noticed that in the factory, a lot of switch cases are 
+used, which will require more switch statements in the future. There may be a better solution.There are a lot of magic numbers in 
+the factory, which may cause difficulties in understanding.

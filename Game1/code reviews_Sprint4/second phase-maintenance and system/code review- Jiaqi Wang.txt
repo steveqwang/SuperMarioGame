@@ -1,0 +1,15 @@
+﻿Author of the code review Jiaqi Wang
+Date of the code review 3/25/2019
+Sprint number 4
+Name of the .cs file being reviewed MsrioPhysicalProperty.cs
+Author of the .cs file being reviewed Zijun Jiang
+Specific comments on code quality
+The overall code quality is good and the code is easy to read. For example, initially the velocity, acceleration and some boolean values have 
+been initialized. In Jump method, when the mario first jump, the mario would have inital upwards velocity and downward acceleration acts like gravtity.
+When mario tries to jump in the air, it just update the acceleration. But the code in Update method can be imporved. The logic and correctness
+is nice, but it can be more clear. It is a little mess to put a lot of jumping update logic in Update method. Maybe it is better to move this part of code
+to UpdateJump method. 
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+It is hard for  programmers try to implement mario with different acceleration and veloctiy. For example, if programmers want implement mario
+moves in the water, they would have to write an another method to implement it. But this method might be rewrited as a method with several parameters of inital velocity
+and acceleration. 

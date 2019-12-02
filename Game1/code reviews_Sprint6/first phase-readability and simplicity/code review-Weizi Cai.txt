@@ -1,0 +1,42 @@
+Author of the code review																	 Weizi Cai
+Date of the code review																		  4/21/2018
+Sprint number 6
+Name of the .cs file being reviewed:							AllCheatCodesManager and ICheatCode class
+Author of the .cs file being reviewed							  Jiaqi Wang Wubing Tang & Zijun Jiang
+Number of minutes taken to complete the review													17 min
+
+
+Specific comments on what is readable and what is not:
+
+
+comments in general:
+Generally speaking, AllCheatCodesManager and ICheatCode class file have a medium-high readability. 
+
+comments in specific aspects:
+
+-------------------------------------------------------   1   ---------------------------------------------
+
+readability
+score: 3/5
+
+"quote: As we know, In the context of programming, program design, or design in general, a design exhibits some flexibility 
+if it can adapt to new, different, or changing requirements. Eliminating the term the requirements,which stress the 
+design process too much, flexibility refers to the unexpectedly many ways in which a design can be used."
+
+General speaking, the structure in AllCheatCodesManager and ICheatCode class have a pretty high flexibility, because all of them follow 
+the same patern, each function has a clear purpose, and we can add anything we want easily, such as new text display, new image etc.
+However, because we have only just started on it, we haven't modified the structure of it, so to someone who is not very familiar our 
+codes, might be a little hard for them to add new features.
+
+/////
+    private string GetInputString() {
+            string input = string.Empty;
+            foreach (string key in inputString) {
+                input = input + key;
+            }
+            return input;
+        }
+/////
+
+this is an example of something we can organize them better. Such that even in the future we got more features, we can still handle them 
+easily, we could put some of them in a new method to make it more intuitive. 

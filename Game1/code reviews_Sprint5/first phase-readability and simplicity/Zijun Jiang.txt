@@ -1,0 +1,32 @@
+Author of the code review: Zijun Jiang
+Date of the code review: 4/3/2018
+Sprint number:5
+Name of the .cs file being reviewed: WordState.cs
+Author of the .cs file being reviewed: Jiaqi Wang
+Number of minutes taken to complete the review: 15min
+Specific comments on what is readable and what is not:
+In general, the WordState is in good standing for read format. The most format of prototypes in this class is easy to understand. Like World-ID, isPause, canPause.
+From the readbility side, I have some suggestions for the entire classes methods.
+// example:
+  }
+        public void Down()
+        {
+            gameStateManager.world.Mario.Down();
+        }
+         public void Left()
+        {
+
+        }
+        public void Right()
+        {
+
+        }
+	 public void Up()
+        {
+            gameStateManager.world.Mario.MarioPhysics.jump();
+            gameStateManager.world.Mario.Up();
+        }
+// end of example
+I can easily understand that Up() method is to make mario jump and make it to up animation. However, other methods like left or right here are meningless (useless) since
+they do nothing here and makes me confused. Like why wordState can be left or right. So I suggest naming here should be MarioGoLeft or MarioGoRight(); Other are generally 
+good like coupling is not high and cohesion is in good range.

@@ -1,0 +1,47 @@
+﻿Author of the code review Weizi Cai
+Date of the code review 2/6/2018
+Sprint number 2
+Name of the .cs file being reviewed: All cs file under Block folder
+Author of the .cs file being reviewed Zijun Jiang & Jiaqi Wang
+Number of minutes taken to complete the review 30 min
+Specific comments on what is readable and what is not
+
+In general, these two authors wrote readable codes in all block classes. They both 
+followed the naming paterns and made the codes consistant. They also used same method header & method 
+names in different kind of blocks such that I felt Coherence, when I called their method in my 
+command classes as a Client. 
+For example, in HiddenBlock.cs, there are two variables one for state change information and one vector for location 
+the author created a constructor and initialized these two variables. In every block class type there is a draw method for 
+command to put things in game, an update method and a special "becomeUsed" method to change the state of block so that it can 
+get dynamic properties. 
+
+namespace Game1.Blocks
+{
+    class HiddenBlock: IBlock
+    {
+
+        private HiddenBlockState State;
+        private Vector2 spriteLocation;
+
+        public HiddenBlock(Vector2 position)
+        {
+            State = new HiddenBlockState();
+            spriteLocation = position;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            State.Draw(spriteBatch, spriteLocation);
+        }
+
+        public void Update()
+        {
+       
+        }
+
+        public void BecomeUsed()
+        {
+            State.BecomeUsed();
+        }
+    }
+}

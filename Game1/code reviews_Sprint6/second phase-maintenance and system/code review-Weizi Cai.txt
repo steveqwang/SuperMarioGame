@@ -1,0 +1,50 @@
+Author of the code review																	 Weizi Cai
+Date of the code review																		 4/08/2018
+Sprint number 5
+Name of the .cs file being reviewed:							   AllCheatCodesManager and ICheatCode class
+Author of the .cs file being reviewed														   Yu Wang
+Number of minutes taken to complete the review										    around 20 mins
+
+
+Specific comments on maintainance and system:
+
+
+comments in general:
+A code smell is a hint that something has gone wrong somewhere in your code. Use the smell to track down the problem. Based on
+my first code smell of this code, I get this conclusion:
+Generally speaking, Even the codes in AllCheatCodesManager and ICheatCode class have some good readability, but I dont think
+they would give a good maintainance performance. 
+
+comments in specific aspects:
+The reason I think the AllCheatCodesManager and ICheatCode class has a relatively low maintainability, is because it is a decentralized system.
+In the file AllCheatCodesManager, there was only 3 general methods, and they are only for playing the cheat codes, while
+other cheat codes, 
+
+private void GetInputs() {
+            Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+       
+           
+            if (pressedKeys.Length > 0)
+            {
+                
+                EnqueueInput(pressedKeys[0]); // we only allow one input key at one time
+            }
+            else {
+                ReleaseKey();
+            }
+            CheckInputs();
+            
+        }
+
+such as ExecuteXFIRE, ExecuteSMALL, were all included in the class file. Whenever 
+we need to create a sound effact, we need to call each sound effact method. However, there might be some cases that we need
+to play a "combo" of sounds, for example, if we got a boss level in the future, we need to create a unique combo of sounds
+for the boss, we need some methods in Soundfactory to do that, however, base on current code patern, we will have to make 
+the sound in boss class, this might be a huge code debts that increase the hardness for maintainance in the future. One choice we have 
+is to import some boss sound track. It would be a better idea to create a new sound effact based on 
+sound effacts we already have, so that we can save a lot of storage spaces. Currently, we could also try to do things such as 
+combine existing sound effacts to create back ground music. 
+
+-------------------------------------------------------   1   ---------------------------------------------
+
+

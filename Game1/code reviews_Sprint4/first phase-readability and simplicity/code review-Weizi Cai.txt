@@ -1,0 +1,73 @@
+Author of the code review																	 Weizi Cai
+Date of the code review																		 3/08/2018
+Sprint number 4
+Name of the .cs file being reviewed:							   All cs file under Collisions folder
+Author of the .cs file being reviewed							  Jiaqi Wang Wubing Tang & Zijun Jiang
+Number of minutes taken to complete the review													45 min
+
+
+Specific comments on what is readable and what is not:
+
+
+comments in general:
+Generally speaking, all 7 .cs file in Collision have a medium-high readability.
+
+comments in specific aspects:
+
+-------------------------------------------------------   1   ---------------------------------------------
+
+flexibility
+score: 4/5
+
+"quote: As we know, In the context of programming, program design, or design in general, a design exhibits some flexibility 
+if it can adapt to new, different, or changing requirements. Eliminating the term the requirements,which stress the 
+design process too much, flexibility refers to the unexpectedly many ways in which a design can be used."
+
+General speaking, the structure in collision class have a pretty high flexibility, because all of them follow the same patern, 
+whenever we need a new solution for a new collision scenario, all we need to do is first create a running checking method in the "AllCollisionHndler"
+class, such as 
+
+
+/////
+ private void CheckMarioEnemyCollision(Rectangle marioBox) {
+            foreach (IEnemy enemy in Level.Enemies)
+            {
+                Rectangle enemyBox = enemy.Rectangle;
+                Rectangle intersectionBox = Rectangle.Intersect(enemyBox, marioBox);
+                if (!intersectionBox.IsEmpty)
+                {
+                    Direction direction = GetCollisionDirection(intersectionBox, marioBox, enemyBox);
+                    MarioEnemyHandler.HandleCollision(Level.Mario, enemy,direction);
+                }
+            }
+        }
+/////
+
+base on the object we need, then we go in detail and create a relative class such as 'MarioEnemyHandler' to deal with the 
+specific case of collision and its behavior, most of time we make mario stop at this place. 
+
+ one change the author may could make, is to collect the common behavior of all kind of collisions, and put them into same class.
+ For example, no matter mario collide with a block or an enemy, or enemy collide with block, they would all have the behavior of 
+
+				case Direction.Top:
+                    mario.Location = new Vector2(mario.Location.X,block.Location.Y-mario.Rectangle.Height);
+                    StandOnBlock(mario);
+                    break;
+
+                case Direction.Left:
+                    mario.Location = new Vector2(block.Location.X - mario.Rectangle.Width, mario.Location.Y);
+                    break;
+
+                case Direction.Right:
+                    mario.Location = new Vector2(block.Location.X + block.Rectangle.Width, mario.Location.Y);
+                    break;
+
+                case Direction.Bottom:
+                    mario.Location = new Vector2(mario.Location.X, block.Location.Y + block.Rectangle.Height);
+                    break;
+
+"collide and stop", this behavior could be shared by both mario and enemy. 
+
+Another thing is, some enemies may be able to jump in the future, however, we haven't deal with situation of enemy touching 
+block in a top direction. Author maybe should take this into consideration.
+

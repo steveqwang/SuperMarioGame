@@ -1,0 +1,18 @@
+﻿Review author: Yu Wang
+Date: 2/15/2019
+Sprint 3
+
+File: MarioSpriteFactory.cs
+Authored by: Wubin Tang
+Time taken for review: 20 minutes
+
+*Look at it instead since MarioSpriteFactory class has more than 250 lines of code
+
+Comments:
+I think that this class is not hard to maintain mostly even thought there are many variables and functions required for 
+the spriteFactory. For example, if now we have another Mario pictures added . the file, we will have three 
+neccessary steps to make it work with the new element. However, I think maybe we can make the class more maintainable.
+Since in the future, we need to repeat all these three steps (variable creation, load picture, methods) whenever 
+we add a new element. I think, in general, we can improve the factory at some point since it takes a while to set up
+the new states. There is a way in which we can add new sprite by indicating what the sprite is instead of three, which 
+would help us maintain the class in the rest of the project. Also, it may also make the other classes more maintainable.

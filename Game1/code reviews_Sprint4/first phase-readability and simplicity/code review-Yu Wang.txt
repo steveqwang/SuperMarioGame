@@ -1,0 +1,61 @@
+﻿Author of the code review: Yu Wang
+Data of the code review: 3/8
+Sprint number 4
+Name of the .cs file being reviewed: GreenMushroom.cs RedMushroom.cs
+Authored by: Weizi Cai
+Time taken: 10 minutes
+
+namespace Game1.Items
+{
+    public class GreenMushroom : IItem
+    {
+        public ItemPhysicalProperty ItemPhysics { get; set; }
+        public Vector2 Location { get; set; }
+        public bool HaveCollision { get; set; }
+        public Rectangle Rectangle => new Rectangle((int)Location.X, (int)Location.Y, sprite.Width, sprite.Height);
+        private ISprite sprite;
+
+        public GreenMushroom(Vector2 location)
+        {
+            ItemPhysics = new ItemPhysicalProperty(this);
+            Location = location;
+            sprite = ItemFactory.Instance.CreateGreenMushroomSprite();
+            HaveCollision = false;
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (!HaveCollision)
+            {
+                sprite.Draw(spriteBatch, Location);
+            }
+
+        }
+
+        public void Update(GameTime gametime)
+        {
+            ItemPhysics.Update(gametime);
+            ItemPhysics.ItemMove();
+        }
+
+        public void CollidedWithMario(IPlayer mario)
+        {
+            HaveCollision = true;
+            if (mario.CurrentPowerState.StateName == "MarioStarSmallState")
+            {
+                mario.CurrentPowerState = new MarioStarBigState(mario);
+            }
+            else if (mario.CurrentPowerState.StateName != "MarioStarBigState")
+            {
+                mario.CurrentPowerState = new MarioBigState(mario);
+            }
+            mario.CurrentAnimationState = new MarioRightIdleState(mario);
+        }
+    }
+}
+
+
+Review:
+Generally speaking, these two classes are easy to understand and have a good quality. There's not too much going on in these classes. But there are some nested 
+if statements and too many new state. In the future, we might consider reducing the level of nested statements by make more classes like statement manager, so 
+that we can enhance the readability. It will also work for fireflower and some other items. 
+Overall these two classes are in good quality and the cohesion is just fine but it can still be improved of some part.

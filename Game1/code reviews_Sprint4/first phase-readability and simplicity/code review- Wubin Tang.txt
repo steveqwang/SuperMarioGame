@@ -1,0 +1,37 @@
+﻿Author of the code review: Wubin Tang
+Date of the code review: 3/8
+Sprint number 4
+Name of the .cs file being reviewed: Camera.cs, Game1.cs, AllCollisionHandler.cs fireball.cs
+Author of the .cs file being reviewed Jiaqi Wang and Yu Wang
+Specific comments on code quality:
+
+private void CheckFireBallCollision()
+        {
+            IBlock[][] blocks = Level.GetBlocks();
+            foreach (Fireball fireball in Level.Mario.fireballs)
+            {
+                Rectangle fireballBox = fireball.Rectangle;
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    for (int j = 0; j < blocks[i].Length; j++)
+                    {
+                        if (blocks[i][j] != null)
+                        {
+                            Rectangle blockBox = blocks[i][j].Rectangle;
+                            Rectangle intersectionBox = Rectangle.Intersect(blockBox, fireballBox);
+                            if (!intersectionBox.IsEmpty)
+                            {
+                                Direction direction = GetCollisionDirection(intersectionBox, fireballBox, blockBox);
+                                FireBallHandler.HandleCollision(fireball, blocks[i][j], direction);
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+This method has too many loops and it will slow down the whole game. And for so many loops, it's hard to figure out which two things have collisions.
+And I notice that game1 and camera both have GetMatrixView(), but the one in game1 is being used. But, I think it's better to put these camera things 
+in one folder instead of Game1.cs due to easier find and future plan. For the fireball.cs, the jump method's name is wierd, because fire ball cannot jump.
+

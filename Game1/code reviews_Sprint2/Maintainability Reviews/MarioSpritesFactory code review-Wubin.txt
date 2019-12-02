@@ -1,0 +1,16 @@
+﻿Review author: Wubin Tang
+Date: 2/11/2019
+Sprint 2
+
+File: MarioSpritesFactory.cs
+Author of the .cs file: Yu Wang
+Comments on code quality:
+So far, this MarioSpritesFactory works fine. It calls a create method in the state corresponding to the Mario action to create 
+a new sprite through a property called instance. And It loads all the textures by the LoadAllTextures method. But this class is a bit too long, 
+and there are many similar methods, they all return a new Staticsprite or DynamicSprite, the only difference is that a different picture is passed. 
+My suggestion is to create a dictionary to store the current action of Mario, which is a string type, and the corresponding Texture2D.
+Then you only need one method and this dictionary, and you can quickly find the texture through key value, and create a new sprite.
+
+
+As I mentioned before, if there is a new sprite to be built as it is now, it will need to create a new method to do this, 
+which will make the whole class very long and prone to omissions.

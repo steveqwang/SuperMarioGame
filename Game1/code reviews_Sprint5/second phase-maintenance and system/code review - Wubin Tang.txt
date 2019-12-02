@@ -1,0 +1,56 @@
+﻿Review author: Wubin Tang
+Date: 4/8/2019
+Sprint 5
+
+File: ScoreObject.cs SoundManager.cs SoundFactory.cs MarioPlayer.cs
+Author of the .cs file: Yu Wang
+Time taken: 30 min
+Comments on code quality:
+
+ public class SoundManager
+    {
+        private Song currentSong;
+
+        private static readonly SoundManager instance = new SoundManager();
+        public static SoundManager Instance { get => instance; }
+
+        private SoundManager()
+        {
+
+        }
+
+        public void PlayMainSong()
+        {
+            currentSong = SoundFactory.Instance.PlayMainSong;
+            MediaPlayer.Play(currentSong);
+            MediaPlayer.IsRepeating = true;
+        }
+
+        public void PlayMenuSong()
+        {
+            currentSong = SoundFactory.Instance.PlayMenuSong;
+            MediaPlayer.Play(currentSong);
+            MediaPlayer.IsRepeating = true;
+        }
+
+        public void PlayGameOverSong()
+        {
+            currentSong = SoundFactory.Instance.PlayGameOverSong;
+            MediaPlayer.Play(currentSong);
+            MediaPlayer.IsRepeating = false;
+        }
+
+        public void PlayPlayerDeadMusic()
+        {
+            currentSong = SoundFactory.Instance.PlayDeadSong;
+            MediaPlayer.Play(currentSong);
+            MediaPlayer.IsRepeating = false;
+        }
+    }
+
+
+
+Generally speaking, these three classes have good quality. There's not too much going on in these classes. But it looks like soundmanager and soundfactory are 
+doing the similiar things. Maybe you can put them into one class. Because if some errors happened about sound, it will be hard to find which class should be 
+modified. Also, ScoreObject class and mario.score are doing same things, maybe we can build another class like ScoreManager to put them together and use scoremangager
+to control the score system.

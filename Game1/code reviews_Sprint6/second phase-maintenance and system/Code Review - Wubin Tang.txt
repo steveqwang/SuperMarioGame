@@ -1,0 +1,76 @@
+﻿Review author: Wubin Tang
+Date: 4/21/2019
+Sprint 6
+
+File: ScoreObject.cs Bowser.cs SoundFactory.cs FireHell.cs ScoreObject.cs
+Author of the .cs file: Yu Wang
+Time taken: 30 min
+Comments on code quality:
+
+ using Game1.Factories;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Game1.World;
+
+namespace Game1.Score 
+{
+    public class ScoreObject
+    {
+        public bool IsRemoved { get; set; }
+        private SpriteFont spriteFont;
+        private string score;
+        private Vector2 location;
+        private Vector2 initialLocation;
+        private bool fixLocation;
+        public bool multipleKill;
+        public float multipleKillExistTime;
+
+        public ScoreObject(int score, Vector2 Location, bool fixLocation)
+        {
+            spriteFont = MenuFactory.Instance.CreateSpriteFont();
+            this.score = score.ToString();
+            location = Location;
+            initialLocation = location;
+            this.fixLocation = fixLocation;
+            IsRemoved = false;
+            multipleKill = true;
+            multipleKillExistTime = 50f;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(spriteFont, score, location, Color.White);
+        }
+
+        public void Update(GameTime gametime)
+        {
+            --location.Y;
+            if ((int)Math.Abs((location.Y) - (initialLocation.Y)) > 50)
+            {
+                IsRemoved = true;
+            }
+            if(multipleKillExistTime <= 0)
+            {
+                multipleKillExistTime = 10f;
+                multipleKill = false;
+            }
+            else
+            {
+                multipleKillExistTime--;
+            }
+
+        }
+    }
+}
+
+
+
+Generally speaking, these classes have good quality. There's not too much going on in these classes. But all these classes have too many if-else statement in update
+method, which will low down the effiency and make the code hard to change and maintain. You create two fireball lists for bowser, one in bowser.cs and one in
+world.cs. One of them is not working and make other people hard to understand your code. Fore score system, maybe we need a scoreManager to handle it instead of
+putting printing score function everywhere and it's hard to maintain.
